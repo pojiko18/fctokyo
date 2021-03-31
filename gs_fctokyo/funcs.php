@@ -67,11 +67,13 @@ function fileUpload($fname,$path){
                 chmod( $file_dir_path, 0644 );
                 return $file_name; //成功時：ファイル名を返す
             } else {
-                return "kaonasi-icon.JPG"; //失敗時：ファイル移動に失敗
+                // return "noimg.png"; //失敗時：ファイル移動に失敗
+              return 1;
             }
         }
     }else{
-         return "kaonasi-icon.JPG"; //失敗時：ファイル取得エラー
+        //  return "noimg.png"; //失敗時：ファイル取得エラー
+      return 2;
     }
 }
 

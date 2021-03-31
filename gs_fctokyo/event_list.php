@@ -21,6 +21,7 @@ if($status==false) {
   //Selectデータの数だけ自動でループしてくれる
   while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view .= '<div class="box"><a href="event_detail.php?id='.$res["e_id"].'" target="_blank" rel="noopener noreferrer"><button>';
+    $view .= '<img src="upload/'.$res["img"].'" width="300">';
     $view .= '<h3>'.$res["title"].'</h3>';
     $view .= '<p>'.$res["year"].'年'.$res["month"].'月'.$res["day"].'日</p>';
     $view .= '<p>＞詳細</p>';

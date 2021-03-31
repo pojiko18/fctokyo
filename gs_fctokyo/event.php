@@ -15,13 +15,19 @@ include("l_header.php");
 <p>無料イベント10ｐ</p>
 
 
-<form method="post" action="event_create.php"  class="form">
+<form method="post" action="event_create.php"  class="form"  enctype="multipart/form-data">
   <h2>イベント作成</h2>
     <div class="loginField">
       <dl class="form-inner">
         <dt class="form-title">イベント タイトル</dt>
         <dd class="form-item"><input type="text" name="title" class="rediTextForm">
-        
+        <dt class="form-title">サムネイル画像</dt>
+            <dd class="form-item">
+            <!-- 画像を入れる -->
+            <input type="file" accept="image/*" capture="camera" name="upfile">
+            <p>※プレビューはでません</p>
+            </dd>
+            <br>
       
     <dt class="form-title">開催日</dt>
     <dd class="form-item">
@@ -89,8 +95,7 @@ include("l_header.php");
             <option value="30">30</option>
             <option value="31">31</option>
             </select>　日
-        <p>カレンダー</p>
-            <input type="date" name="calendar" max="9999-12-31">
+        
     </dd>
     <dt class="form-title">時間</dt>
     <dd class="form-item"><input type="text" name="time" class="rediTextForm">

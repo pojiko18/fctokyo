@@ -5,12 +5,13 @@ loginCheck();
 
 //GETでid値を取得
 $id =$_GET["id"];
+$o_id =$_SESSION["id"];
 
 //DB接続
 $pdo = dbcon();
 
 
-// ◆ユーザー情報の取得
+// ◆イベント情報の取得
 $sql = "SELECT * FROM event WHERE e_id=:id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -28,11 +29,10 @@ if($status==false) {
 }
 
 //◆参加したイベントとイベント詳細をJOINさせて取得
-$sql_e = "SELECT * FROM event_list LEFT JOIN event ON event_list.event_id = event.e_id WHERE user_id=:u_id AND e_id=:e_id ";
+$sql_e = "SELECT * FROM event_list LEFT JOIN event ON event_list.event_id = event.e_id WHERE e_id=:e_id ";
 
 $stmt_e = $pdo->prepare($sql_e);
-$stmt_e->bindValue(':u_id', $u_id, PDO::PARAM_INT);
-$stmt_e->bindValue(':e_id', $e_id, PDO::PARAM_INT);
+$stmt_e->bindValue(':e_id', $id, PDO::PARAM_INT);
 $status_e = $stmt_e->execute();
 
 //データ表示
@@ -49,7 +49,7 @@ if($status_e==false) {
 $sql_sanka = "SELECT * FROM event_list LEFT JOIN users ON event_list.user_id = users.user_id WHERE event_id=:e_id ";
 
 $stmt_sanka = $pdo->prepare($sql_sanka);
-$stmt_sanka->bindValue(':e_id', $e_id, PDO::PARAM_INT);
+$stmt_sanka->bindValue(':e_id', $id, PDO::PARAM_INT);
 $status_sanka = $stmt_sanka->execute();
 
 //データ表示
@@ -63,15 +63,36 @@ if($status_sanka ==false) {
 
 } else {
   while( $sanka = $stmt_sanka->fetch(PDO::FETCH_ASSOC)){ 
-      // $sanka_event .= $sanka["user_name"].'<br>';←これで名前取ってこれる
-      if($u_id != $sanka["user_id"]){
-      $sanka_event .= '<a href="./user_page.php?id='.$sanka["user_id"].'">'.$sanka["user_name"].'</a><br>';
-      }else{
-      $sanka_event .= $sanka["user_name"].'<br>';
-      }
+      // $sanka_event .= $sanka["user_name"].'<br>';←これで名前取ってこれる      
+      $sanka_event .= '<a href="./user_page.php?id='.$sanka["user_id"].'">'.$sanka["user_name"].'</a><br>';      
 
       // 人数カウント
       $sanka_count +=  1;
+  }
+}
+
+//◆bbsとユーザー詳細をJOINさせて取得
+$sql_bbs = "SELECT * FROM event_bbs LEFT JOIN users ON event_bbs.user_id = users.user_id WHERE event_id=:e_id ";
+
+$stmt_bbs = $pdo->prepare($sql_bbs);
+$stmt_bbs->bindValue(':e_id', $id, PDO::PARAM_INT);
+$status_bbs = $stmt_bbs->execute();
+
+//データ表示
+$bbs_view = "";
+
+if($status_bbs ==false) {
+  //execute（SQL実行時にエラーがある場合）
+  $error_bbs = $stmt_bbs->errorInfo();
+  exit("ErrorQuery:".$error_bbs[2]);
+
+} else {
+  while( $bbs = $stmt_bbs->fetch(PDO::FETCH_ASSOC)){ 
+    $bbs_view .= '<div><img src="upload/'.$bbs["img"].'" width="100"></div>';
+    $bbs_view .= '<a href="./user_page.php?id='.$bbs["user_id"].'">'.$bbs["user_name"].'</a>:';
+    $bbs_view .= $bbs["comment"].'<br>';
+    $bbs_view .= $bbs["time"].'</div>';
+
   }
 }
 
@@ -94,9 +115,6 @@ if($status_sanka ==false) {
   <link href="./css/login.css" rel="stylesheet">
   <link href="./css/style_sp.css" rel="stylesheet">
 
-  <style type="text/css">
-div {border:solid 1px #000000;}
-</style>
 </head>
 <body id="main">
 <!-- Head[Start] -->
@@ -109,7 +127,11 @@ include("l_header.php");
 
 <!-- 日程入れる -->
 <section>
-
+  <div><?php if($row["img"]==NULL|| $row["img"]== 1|| $row["img"]== 2){ ?> 
+            <div><img src="./upload/noimg.png" alt="" width="300"></div>
+            <?php }else{?> 
+            <div><img src="upload/<?=$row["img"]?>" width="300" name="upfile"></div>
+            <?php } ?></div>
   <h3><?=$row["title"]?></h3>
   <p><?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日</p>
   <p><?=$row["time"]?></p>
@@ -129,8 +151,19 @@ include("l_header.php");
 
 <!-- 時間あればチャット入れる -->
 <section>
+  <h3 id="bbs">メッセージ</h3>
+  <form method="post" action="bbs.php"  class="form">
+    <textarea name="bbs" rows="3" placeholder="メッセージを入力"></textarea>
+    <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
+    <input type="hidden" name="u_id" value="<?=$u_id?>">
+    <div class="submit">
+      <input type="submit" value="送信">
+    </div>
+  </form>
 
+  <div><?=$bbs_view?></div>
 </section>
+
 
 
 

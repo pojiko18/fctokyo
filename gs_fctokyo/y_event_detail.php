@@ -146,7 +146,11 @@ include("l_header.php");
   -->
 <!-- 日程入れる -->
 <section>
-
+  <div><?php if($row["img"]==NULL|| $row["img"]== 1|| $row["img"]== 2){ ?> 
+            <div><img src="./upload/noimg.png" alt="" width="300"></div>
+            <?php }else{?> 
+            <div><img src="upload/<?=$row["img"]?>" width="300" name="upfile"></div>
+            <?php } ?></div>
   <h2><?=$row["title"]?></h2>
   <h3>詳細</h3>
   <p><?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日</p>
