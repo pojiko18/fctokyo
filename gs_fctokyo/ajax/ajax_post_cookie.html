@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax_post_cookie.html</title>
+</head>
+
+<body>
+<h1 id="status">Ajax通信中...</h1>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    //送信データを用意
+    const params = new URLSearchParams();
+    params.append('id', 'value1');
+    params.append('mode', 'value2');
+    params.append('type', 'value3');
+
+    //axiosでCookie情報が必要な場合
+    const axiosPost = axios.create({
+        xsrfHeaderName: 'X-CSRF-Token',
+        withCredentials: true
+    });
+
+    //axiosでAjax送信
+    axiosPost.post('ajax_post_cookie.php',params).then(function (response) {
+        console.log(response.data);//通信OK
+        document.querySelector("#status").innerHTML="ajax_post_cookie.php/通信OK";
+    }).catch(function (error) {
+        console.log(error);//通信Error
+    }).then(function () {
+        console.log("Last");//通信OK/Error後に処理を必ずさせたい場合
+    });
+
+</script>
+</body>
+</html>
