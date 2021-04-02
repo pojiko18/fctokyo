@@ -6,7 +6,56 @@
 	background: #fff;
 }
 
+.h1,
+h1 {
+ font-size:1.75rem; /*2.5rem*/
+}
+.h2,
+h2 {
+ font-size:1.5rem; /*2rem*/
+}
+.h3,
+h3 {
+ font-size:1.2rem; /*1.75rem*/
+}
+.h4,
+h4 {
+ font-size:1.5rem
+}
+.h5,
+h5 {
+ font-size:1.25rem
+}
+.h6,
+h6 {
+ font-size:1rem
+}
 
+.card{
+	margin-bottom: 1.5rem;
+}
+.card-img-top{
+	object-fit: cover;
+}
+.card-title{
+	margin-bottom: .5rem;
+
+}
+.card a:hover{
+	text-decoration: none;
+}
+.card a p.card-text{
+	color: #333;
+	display: flex;
+	line-height: 1.2;
+}
+.card a p.card-text span{
+	background: #666;
+	color: #fff;
+	padding: 0.2rem;
+	font-size: .7rem;
+	margin-right: .3rem;
+}
 /* ------------------------------------------------------
 -------------- Main Section Styling Starts --------------
 --------------------------------------------------------*/
