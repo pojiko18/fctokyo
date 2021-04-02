@@ -38,22 +38,16 @@ h6 {
 	object-fit: cover;
 }
 .card-title{
-	margin-bottom: .5rem;
-
+	font-weight: bold;
 }
 .card a:hover{
 	text-decoration: none;
 }
 .card a p.card-text{
 	color: #333;
-	display: flex;
-	line-height: 1.2;
 }
-.card a p.card-text span{
-	background: #666;
-	color: #fff;
-	padding: 0.2rem;
-	font-size: .7rem;
+.card-text i{
+	color:#bbb;
 	margin-right: .3rem;
 }
 /* ------------------------------------------------------
@@ -195,4 +189,59 @@ h6 {
 .form-register .form-label-group {
     position: relative;
     margin-bottom: 1rem;
+}
+
+/* ------------------------------------------------------
+-------------- Event dital Section Styling Starts --------------
+--------------------------------------------------------*/
+.event-main{
+	background: #cbd7f4; /* Old browsers */
+	background: -moz-linear-gradient(top,  #cbd7f4 0%, #f2f4ff 70%, #ffffff 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #cbd7f4 0%,#f2f4ff 70%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #cbd7f4 0%,#f2f4ff 70%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cbd7f4', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+.event-main-img{
+	width:100%;
+	height: 380px;
+	object-fit: cover;
+}
+
+.event-main-box{
+	max-width: 1140px;
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+@media (max-width:768px) {
+	.event-main-img{
+		height: 240px;
+	}
+}
+.event-detail-box{
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 2rem;
+	padding-bottom:2rem;
+	background-color: #f7f7fb;
+	border-top:#eeeff7 1px solid;
+}
+.event-detail-title{
+	font-weight: bold;
+}
+
+.checkin{
+	background: #DB1818;
+	color:#fff;
+	display: inline-block;
+	padding:0.2rem 0.5rem;
+	margin: 0;
+	margin-left:auto;
+	font-size: .8rem;
+}
+@media (max-width:992px) {
+	.checkin{
+		margin-left:0;
+	}
 }

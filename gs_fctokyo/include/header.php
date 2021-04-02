@@ -9,6 +9,9 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/all.min.css">
+
+    <?php if(isset($addhead)) echo $addhead ?>
     
 </head>
 <body class="d-flex flex-column h-100">

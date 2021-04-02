@@ -67,9 +67,9 @@ if($status_sanka ==false) {
   while( $sanka = $stmt_sanka->fetch(PDO::FETCH_ASSOC)){ 
       // $sanka_event .= $sanka["user_name"].'<br>';←これで名前取ってこれる
       if($u_id != $sanka["user_id"]){
-      $sanka_event .= '<a href="./user_page.php?id='.$sanka["user_id"].'">'.$sanka["user_name"].'</a><br>';
+      $sanka_event .= '<li><a href="./user_page.php?id='.$sanka["user_id"].'">'.$sanka["user_name"].'</li>';
       }else{
-      $sanka_event .= $sanka["user_name"].'<br>';
+      $sanka_event .= '<li>'.$sanka["user_name"].'</li>';
       }
 
       // 人数カウント
@@ -107,34 +107,38 @@ if($status_bbs ==false) {
 
 ?>
 
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>イベント詳細ページ</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-  <link rel="stylesheet" href="css/range.css">
-  
-  <!-- <link href="./css/main.css" rel="stylesheet"> -->
-  <link href="./css/select.css" rel="stylesheet">
-  <link href="./css/login.css" rel="stylesheet">
-  <link href="./css/style_sp.css" rel="stylesheet">
-  <!-- モーダル用 ↓↓↓-->
-<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-
-
-<body id="main">
-<!-- Head[Start] -->
 <?php
-include("l_header.php");
+$title = "イベント詳細";
+$addhead ='<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">';
+include("include/header.php");
 ?>
-<!-- Head[End] -->
 
-<!-- Main[Start] -->
-    <!-- ポップアップ
+<div class="event-main">
+    <div class="event-main-box">
+        <?php if($row["img"]==NULL|| $row["img"]== 1|| $row["img"]== 2){ ?>
+        <div><img src="./upload/noimg.png" alt="" width="100%" class="event-main-img"></div>
+        <?php }else{?>
+        <div><img src="upload/<?=$row["img"]?>" width="100%" class="event-main-img" name="upfile"></div>
+        <?php } ?>
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h2 class="event-detail-title"><?=$row["title"]?></h2>
+                </div>
+                <?php if($row_e == true){ ?>
+                <div class="col-lg-3 text-lg-right">
+                    <p class="checkin"><i class="fas fa-check"></i> チェックイン済み</p>
+                </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="event-detail-box">
+    <div class="container">
+        <!-- Main[Start] -->
+        <!-- ポップアップ
     <div class="popup" id="js-popup">
       <div class="popup-inner">
         <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
@@ -144,81 +148,85 @@ include("l_header.php");
     </div> 
   参照：https://tech-dig.jp/js-modal/
   -->
-<!-- 日程入れる -->
-<section>
-  <div><?php if($row["img"]==NULL|| $row["img"]== 1|| $row["img"]== 2){ ?> 
-            <div><img src="./upload/noimg.png" alt="" width="300"></div>
-            <?php }else{?> 
-            <div><img src="upload/<?=$row["img"]?>" width="300" name="upfile"></div>
-            <?php } ?></div>
-  <h2><?=$row["title"]?></h2>
-  <h3>詳細</h3>
-  <p><?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日</p>
-  <p><?=$row["time"]?></p>
-  <p><?=$row["place"]?></p>
-  <p><?=$row["contents"]?></p>
+        <!-- 日程入れる -->
+        <div class="row">
+            <div class="col-lg-12">
+
+            </div>
+        </div>
 
 
-</section>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body event-detail-overview">
+                        <h3 class="card-title">詳細</h3>
+                        <p class="card-text"><i class="fas fa-calendar-alt"></i>
+                            <?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日
+                            <?=$row["time"]?></p>
+                        <p class="card-text"><i class="fas fa-map-marker-alt"></i> <?=$row["place"]?></p>
+                        <p class="card-text"><?=$row["contents"]?></p>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-lg-4">
+                <!-- 合言葉入れるところ -->
+                <?php if($row_e != true){ ?>
+                <div class="card">
+                    <div class="card-header">合言葉</div>
+                    <div class="card-body">
+                        <form method="post" action="aikotoba_act.php" class="form">
+                            <div class="form-group">
+                                <label for="aikotoba">参加希望の方は合言葉を入力してください。</label>
+                                <input type="text" id="aikotoba" name="aikotoba" class="lform-control">
+                            </div>
+                            <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
+                            <input type="hidden" name="u_id" value="<?=$u_id?>">
+                            <input type="hidden" name="point" value="<?=$row["point"]?>">
+                            <p class="card-text">
+                                <input type="submit" value="送信する" class="btn btn-primary btn-block" id="js-show-popup">
+                            </p>
+                        </form>
+                    </div>
+                </div>
+                <?php } ?>
 
-<section>
-<!-- 合言葉入れるところ -->
-      <?php if($row_e == true){ ?>
-          <div>チェックイン済みです</div>
-          
-      <?php }else{ ?>
-        <form method="post" action="aikotoba_act.php"  class="form">
-        <dl class="form-inner">
-            <dt class="form-title">合言葉</dt>
-            <dd class="form-item"><input type="text" name="aikotoba"></dd>
-            <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
-            <input type="hidden" name="u_id" value="<?=$u_id?>">
-            <input type="hidden" name="point" value="<?=$row["point"]?>">
-        </dl>
-        <p class="btn-c">
-            <input type="submit" value="送信する" class="btn" id="js-show-popup">
-        </p>
-      </form>
-      <?php } ?>
+                <!-- 人数と名前表示 -->
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">参加者数 <?=$sanka_count?></h3>
+                        <div class="card-text">
+                            <ul><?=$sanka_event?></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- 時間あればチャット入れる -->
+                <section>
+                    <h3 id="bbs">メッセージ</h3>
+                    <form method="post" action="bbs.php" class="form">
+                        <textarea name="bbs" rows="3" placeholder="メッセージを入力"></textarea>
+                        <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
+                        <input type="hidden" name="u_id" value="<?=$u_id?>">
+                        <div class="submit">
+                            <input type="submit" value="送信">
+                        </div>
+                    </form>
 
-</section>
+                    <div><?=$bbs_view?></div>
+                </section>
+            </div>
+        </div>
 
-<!-- 人数と名前表示 -->
-<section>
-<h3>参加者一覧</h3>
-<div>参加数：<?=$sanka_count?></div>
-<div>参加者：<?=$sanka_event?></div>
-</section>
-
-<!-- 時間あればチャット入れる -->
-<section>
-  <h3 id="bbs">メッセージ</h3>
-  <form method="post" action="bbs.php"  class="form">
-    <textarea name="bbs" rows="3" placeholder="メッセージを入力"></textarea>
-    <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
-    <input type="hidden" name="u_id" value="<?=$u_id?>">
-    <div class="submit">
-      <input type="submit" value="送信">
     </div>
-  </form>
-
-  <div><?=$bbs_view?></div>
-</section>
-
-
-
-
+</div><!-- event-text-box -->
 
 <!-- Main[End] -->
 <?php
-include("y_footer.php");
+include("include/footer.php");
 ?>
-
-
-
-
-
-</body>
-</html>
