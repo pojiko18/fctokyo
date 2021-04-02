@@ -1,0 +1,149 @@
+
+.btn{
+	padding: .5rem .75rem;
+}
+.btn-outline-danger{
+	background: #fff;
+}
+
+
+/* ------------------------------------------------------
+-------------- Main Section Styling Starts --------------
+--------------------------------------------------------*/
+
+
+#main {
+  height: 100%;
+}
+
+
+/* ----- Hero Section Styling Starts ----- */
+
+.hero-section {
+	background:url(../img/header-bg.jpg);
+	background-size: cover;
+	background-position: center;
+	padding: 150px 0 0 0;
+}
+
+.hero-content {
+	padding: 50px 0 50px 0;
+	overflow: hidden;
+}
+
+.hero-content h1 {
+	font-size: 34px;
+	font-weight: 900;
+	color: #fff;
+	line-height: 1.2;
+	letter-spacing: -1px;
+	margin: 0 0 50px 0;
+	text-shadow: 0 0 5px #333;
+}
+
+.hero-content p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	color: #fff;
+	font-weight: 400;
+	line-height: 1.5;
+	margin: 0 0 20px 0;
+}
+.hero-content p .btn{
+	width: 100%;
+	max-width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+@media only screen and (min-width: 767px) {
+	.hero-section {
+		padding: 150px 0 100px 0;
+	}
+
+	.hero-section {
+		padding: 13% 0;
+	}
+
+	.hero-content {
+		padding: 100px 0 100px 0;
+		overflow: hidden;
+	}
+
+	.hero-content h1 {
+		font-size: 54px;
+	}
+
+	.product .hero-content {
+		padding: 150px 0 100px 0;
+		text-align: left;
+	}
+
+	.hero-content h1 {
+		font-size: 48px;
+		margin: 0 0 50px 0;
+	}
+
+	.hero-content p {
+		font-size: 14px;
+	}
+}
+
+/* ------------------------------------------------------
+-------------- Footer Section Styling Starts --------------
+--------------------------------------------------------*/
+
+.footer{
+	background: #eee;
+	font-size: 12px;
+}
+
+.footer nav ul{
+	padding: 0;	
+	list-style: none;
+}
+
+.footer nav ul .nav-link {
+	padding: .5rem 0 .5rem;
+}
+/* ------------------------------------------------------
+-------------- Signin Section Styling Starts --------------
+--------------------------------------------------------*/
+
+.signin{
+}
+.form-signin,
+.form-register {
+    width: 100%;
+    max-width: 420px;
+	margin: auto;
+}
+.form-signin .form-control,
+.form-register .form-control {
+	position: relative;
+	box-sizing: border-box;
+	height: auto;
+	padding: 10px;
+	font-size: 16px;
+}
+.form-signin .form-control:focus, 
+.form-register .form-control:focus{
+		z-index: 2;
+}
+.form-signin input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+  }
+  
+  /* ------------------------------------------------------
+-------------- Register Section Styling Starts --------------
+--------------------------------------------------------*/
+.form-register .form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
