@@ -28,8 +28,8 @@ if($status==false) {
     $view .= '<img class="card-img-top" src="upload/'.$res["img"].'" width="100%" height="180px">';
     $view .= '<div class="card-body">';
     $view .= '<h3 class="card-title">'.$res["title"].'</h3>';
-    $view .= '<p class="card-text"><span>開催日</span>'.$res["year"].'年'.$res["month"].'月'.$res["day"].'日</p>';
-    $view .= '<p><button class="btn btn-primary btn-block">詳しく見る</button></p>';
+    $view .= '<p class="card-text"><i class="fas fa-calendar-alt"></i> '.$res["year"].'年'.$res["month"].'月'.$res["day"].'日</p>';
+    $view .= '<p class="card-text"><button class="btn btn-primary btn-block">詳しく見る</button></p>';
     $view .= '</div>';
     $view .= '</a></div></div>';
     
