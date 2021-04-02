@@ -22,10 +22,10 @@ include("include/header.php");
 
             <form method="post" action="login_act.php" class="form form-signin">
                 <?php if(isset($err['lid'])): ?>
-                <p><?php echo $err['lid']; ?></p>
+                <p class="alert alert-danger"><?php echo $err['lid']; ?></p>
                 <?php endif; ?>
                 <?php if(isset($err['lpw'])): ?>
-                <p><?php echo $err['lpw']; ?></p>
+                <p class="alert alert-danger"><?php echo $err['lpw']; ?></p>
                 <?php endif; ?>
                 <label for="lid" class="sr-only">ID / メールアドレス</label>
                 <input type="text" name="lid" class="lid form-control" placeholder="ID または メールアドレス">
