@@ -1,0 +1,247 @@
+
+.btn{
+	padding: .5rem .75rem;
+}
+.btn-outline-danger{
+	background: #fff;
+}
+
+.h1,
+h1 {
+ font-size:1.75rem; /*2.5rem*/
+}
+.h2,
+h2 {
+ font-size:1.5rem; /*2rem*/
+}
+.h3,
+h3 {
+ font-size:1.2rem; /*1.75rem*/
+}
+.h4,
+h4 {
+ font-size:1.5rem
+}
+.h5,
+h5 {
+ font-size:1.25rem
+}
+.h6,
+h6 {
+ font-size:1rem
+}
+
+.card{
+	margin-bottom: 1.5rem;
+}
+.card-img-top{
+	object-fit: cover;
+}
+.card-title{
+	font-weight: bold;
+}
+.card a:hover{
+	text-decoration: none;
+}
+.card a p.card-text{
+	color: #333;
+}
+.card-text i{
+	color:#bbb;
+	margin-right: .3rem;
+}
+/* ------------------------------------------------------
+-------------- Main Section Styling Starts --------------
+--------------------------------------------------------*/
+
+
+#main {
+  height: 100%;
+}
+
+
+/* ----- Hero Section Styling Starts ----- */
+
+.hero-section {
+	background:url(../img/header-bg.jpg);
+	background-size: cover;
+	background-position: center;
+	padding: 150px 0 0 0;
+}
+
+.hero-content {
+	padding: 50px 0 50px 0;
+	overflow: hidden;
+}
+
+.hero-content h1 {
+	font-size: 34px;
+	font-weight: 900;
+	color: #fff;
+	line-height: 1.2;
+	letter-spacing: -1px;
+	margin: 0 0 50px 0;
+	text-shadow: 0 0 5px #333;
+}
+
+.hero-content p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	color: #fff;
+	font-weight: 400;
+	line-height: 1.5;
+	margin: 0 0 20px 0;
+}
+.hero-content p .btn{
+	width: 100%;
+	max-width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+@media only screen and (min-width: 767px) {
+	.hero-section {
+		padding: 150px 0 100px 0;
+	}
+
+	.hero-section {
+		padding: 13% 0;
+	}
+
+	.hero-content {
+		padding: 100px 0 100px 0;
+		overflow: hidden;
+	}
+
+	.hero-content h1 {
+		font-size: 54px;
+	}
+
+	.product .hero-content {
+		padding: 150px 0 100px 0;
+		text-align: left;
+	}
+
+	.hero-content h1 {
+		font-size: 48px;
+		margin: 0 0 50px 0;
+	}
+
+	.hero-content p {
+		font-size: 14px;
+	}
+}
+
+/* ------------------------------------------------------
+-------------- Footer Section Styling Starts --------------
+--------------------------------------------------------*/
+
+.footer{
+	background: #eee;
+	font-size: 12px;
+}
+
+.footer nav ul{
+	padding: 0;	
+	list-style: none;
+}
+
+.footer nav ul .nav-link {
+	padding: .5rem 0 .5rem;
+}
+/* ------------------------------------------------------
+-------------- Signin Section Styling Starts --------------
+--------------------------------------------------------*/
+
+.signin{
+}
+.form-signin,
+.form-register {
+    width: 100%;
+    max-width: 420px;
+	margin: auto;
+}
+.form-signin .form-control,
+.form-register .form-control {
+	position: relative;
+	box-sizing: border-box;
+	height: auto;
+	padding: 10px;
+	font-size: 16px;
+}
+.form-signin .form-control:focus, 
+.form-register .form-control:focus{
+		z-index: 2;
+}
+.form-signin input[type="text"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+  }
+  
+  /* ------------------------------------------------------
+-------------- Register Section Styling Starts --------------
+--------------------------------------------------------*/
+.form-register .form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+/* ------------------------------------------------------
+-------------- Event dital Section Styling Starts --------------
+--------------------------------------------------------*/
+.event-main{
+	background: #cbd7f4; /* Old browsers */
+	background: -moz-linear-gradient(top,  #cbd7f4 0%, #f2f4ff 70%, #ffffff 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #cbd7f4 0%,#f2f4ff 70%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #cbd7f4 0%,#f2f4ff 70%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cbd7f4', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+.event-main-img{
+	width:100%;
+	height: 380px;
+	object-fit: cover;
+}
+
+.event-main-box{
+	max-width: 1140px;
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+@media (max-width:768px) {
+	.event-main-img{
+		height: 240px;
+	}
+}
+.event-detail-box{
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 2rem;
+	padding-bottom:2rem;
+	background-color: #f7f7fb;
+	border-top:#eeeff7 1px solid;
+}
+.event-detail-title{
+	font-weight: bold;
+}
+
+.checkin{
+	background: #DB1818;
+	color:#fff;
+	display: inline-block;
+	padding:0.2rem 0.5rem;
+	margin: 0;
+	margin-left:auto;
+	font-size: .8rem;
+}
+@media (max-width:992px) {
+	.checkin{
+		margin-left:0;
+	}
+}

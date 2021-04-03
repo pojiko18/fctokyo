@@ -23,12 +23,15 @@ if($status==false) {
 }else{
   //Selectデータの数だけ自動でループしてくれる
   while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
-    $view .= '<div class="box"><a href="y_event_detail.php?id='.$res["e_id"].'" target="_blank" rel="noopener noreferrer"><button>';
-    $view .= '<img src="upload/'.$res["img"].'" width="300">';
-    $view .= '<h3>'.$res["title"].'</h3>';
-    $view .= '<p>'.$res["year"].'年'.$res["month"].'月'.$res["day"].'日</p>';
-    $view .= '<p>＞詳細</p>';
-    $view .= '</button></a></div>';
+    $view .= '<div class="col-lg-4 col-md-6"><div class="card mb-4">';
+    $view .= '<a href="y_event_detail.php?id='.$res["e_id"].'" rel="noopener noreferrer">';
+    $view .= '<img class="card-img-top" src="upload/'.$res["img"].'" width="100%" height="180px">';
+    $view .= '<div class="card-body">';
+    $view .= '<h3 class="card-title">'.$res["title"].'</h3>';
+    $view .= '<p class="card-text"><i class="fas fa-calendar-alt"></i> '.$res["year"].'年'.$res["month"].'月'.$res["day"].'日</p>';
+    $view .= '<p class="card-text"><button class="btn btn-primary btn-block">詳しく見る</button></p>';
+    $view .= '</div>';
+    $view .= '</a></div></div>';
     
   }
 
@@ -36,38 +39,22 @@ if($status==false) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>ログイン後のページ</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="./css/login.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
-    <link href="./css/style_sp.css" rel="stylesheet">
-    
-</head>
-<body>
-
-<!-- Head[Start] -->
 
 <?php
-include("l_header.php");
+$title = "イベント一覧";
+include("include/header.php");
 ?>
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
-<p>ユーザーのイベント一覧ページ</p>
-<div><?=$view?></div>
+<div class="container mt-4">
+<h1>イベント一覧</h1>
+<div class="row"><?=$view?></div>
+</div>
 
-<br>
 <?php
-include("y_footer.php");
+include("include/footer.php");
 ?>
-</body>
-</html>
 
 
 
