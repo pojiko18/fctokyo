@@ -64,7 +64,7 @@ if($status_sanka ==false) {
 } else {
   while( $sanka = $stmt_sanka->fetch(PDO::FETCH_ASSOC)){ 
       // $sanka_event .= $sanka["user_name"].'<br>';←これで名前取ってこれる      
-      $sanka_event .= '<a href="./user_page.php?id='.$sanka["user_id"].'">'.$sanka["user_name"].'</a><br>';      
+      $sanka_event .= '<a href="./mypage.php?id='.$sanka["user_id"].'">'.$sanka["user_name"].'</a><br>';      
 
       // 人数カウント
       $sanka_count +=  1;
@@ -88,11 +88,17 @@ if($status_bbs ==false) {
 
 } else {
   while( $bbs = $stmt_bbs->fetch(PDO::FETCH_ASSOC)){ 
-    
-    $bbs_view .= '<li class="media mb-4"><img src="upload/'.$bbs["img"].'" width="100">';
-    $bbs_view .= '<div class="media-body"><a href="./user_page.php?id='.$bbs["user_id"].'">'.$bbs["user_name"].'</a>:';
-    $bbs_view .= $bbs["comment"].'<br>';
-    $bbs_view .= $bbs["time"].'</div></li>';
+    if($bbs["img"]==NULL|| $bbs["img"]== 1|| $bbs["img"]== 2){
+      $bbs_img = "./img/userimg.jpg";
+    }
+    else{
+        $bbs_img = './upload/'.$bbs["img"];
+    }
+
+    $bbs_view .= '<li class="media bbs-box"><img src="'.$bbs_img.'" width="30" class="mr-2 user-icon">';
+    $bbs_view .= '<div class="media-body bbs-text-box"><p class="bbs-name"><a href="./mypage.php?id='.$bbs["user_id"].'">'.$bbs["user_name"].'</a></p>';
+    $bbs_view .= '<p class="bbs-comment">'.nl2br($bbs["comment"]).'</p>';
+    $bbs_view .= '<p class="bbs-time">'.$bbs["time"].'</p></div></li>';
 
   }
 }
@@ -100,82 +106,93 @@ if($status_bbs ==false) {
 
 ?>
 
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>イベント詳細ページ</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-  <link rel="stylesheet" href="css/range.css">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="./css/index.css" rel="stylesheet">
-  <link href="./css/select.css" rel="stylesheet">
-  <link href="./css/login.css" rel="stylesheet">
-  <link href="./css/style_sp.css" rel="stylesheet">
-
-</head>
-<body id="main">
-<!-- Head[Start] -->
 <?php
-include("l_header.php");
+$title = "イベント詳細";
+include("include/header_owner.php");
 ?>
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
 
-<!-- 日程入れる -->
-<section>
-  <div><?php if($row["img"]==NULL|| $row["img"]== 1|| $row["img"]== 2){ ?> 
-            <div><img src="./upload/noimg.png" alt="" width="300"></div>
-            <?php }else{?> 
-            <div><img src="upload/<?=$row["img"]?>" width="300" name="upfile"></div>
-            <?php } ?></div>
-  <h3><?=$row["title"]?></h3>
-  <p><?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日</p>
-  <p><?=$row["time"]?></p>
-  <p><?=$row["place"]?></p>
-  <p><?=$row["contents"]?></p>
-
-
-</section>
-
-
-<!-- 人数と名前表示 -->
-<section>
-<div>参加数：<?=$sanka_count?></div>
-<div>参加者：<?=$sanka_event?></div>
-</section>
-
-
-<!-- 時間あればチャット入れる -->
-<section>
-  <h3 id="bbs">メッセージ</h3>
-  <form method="post" action="bbs.php"  class="form">
-    <textarea name="bbs" rows="3" placeholder="メッセージを入力"></textarea>
-    <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
-    <input type="hidden" name="u_id" value="<?=$u_id?>">
-    <div class="submit">
-      <input type="submit" value="送信">
+<div class="event-main">
+    <div class="event-main-box">
+        <?php if($row["img"]==NULL|| $row["img"]== 1|| $row["img"]== 2){ ?>
+        <div><img src="./img/noimg.jpg" alt="" width="100%" class="event-main-img"></div>
+        <?php }else{?>
+        <div><img src="upload/<?=$row["img"]?>" width="100%" class="event-main-img" name="upfile"></div>
+        <?php } ?>
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h2 class="event-detail-title"><?=$row["title"]?></h2>
+                </div>
+            </div>
+        </div>
     </div>
-  </form>
+</div>
 
-  <ul class="list-unstyled"><?=$bbs_view?></ul>
-</section>
+<div class="event-detail-box">
+    <div class="container">
+        <!-- Main[Start] -->
 
+        <!-- 日程入れる -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body event-detail-overview">
+                        <h3 class="card-title">詳細</h3>
+                        <p class="card-text"><i class="fas fa-calendar-alt fa-fw"></i>
+                            <?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日
+                            <?=$row["time"]?></p>
+                        <p class="card-text"><i class="fas fa-map-marker-alt fa-fw"></i> <?=$row["place"]?></p>
+                        <p class="card-text"><?=$row["contents"]?></p>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-lg-4">
+              <!-- 人数と名前表示 -->
+              <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">参加者数 <?=$sanka_count?></h3>
+                        <div class="card-text">
+                            <ul class="list-unstyled"><?=$sanka_event?></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- 時間あればチャット入れる -->
+                <div class="card">
+                    <div class="card-header" id="bbs">メッセージ</div>
+                    
+                    <div class="card-body">
+                    <form method="post" action="bbs.php" class="form">
+                        <textarea name="bbs" rows="3" placeholder="メッセージを入力" class="form-control mb-3"></textarea>
+                        <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
+                        <input type="hidden" name="u_id" value="<?=$u_id?>">
+                        <div class="submit card-text"">
+                            <input type="submit" value="送信" class="btn btn-primary" >
+                        </div>
+                    </form>
+                    </div>
+                    <?php if($bbs_view){ ?>
+                    <div class="card-footer bkgd-white">
+                    <ul class="list-unstyled mb-0"><?=$bbs_view?></ul>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
 
-
+    </div>
+</div><!-- event-text-box -->
 
 <!-- Main[End] -->
 <?php
-include("footer.php");
+include("include/footer_owner.php");
 ?>
-
-
-
-</body>
-</html>

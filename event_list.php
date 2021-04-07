@@ -20,12 +20,21 @@ if($status==false) {
 }else{
   //Selectデータの数だけ自動でループしてくれる
   while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
-    $view .= '<div class="box"><a href="event_detail.php?id='.$res["e_id"].'" target="_blank" rel="noopener noreferrer"><button>';
-    $view .= '<img src="upload/'.$res["img"].'" width="300">';
-    $view .= '<h3>'.$res["title"].'</h3>';
-    $view .= '<p>'.$res["year"].'年'.$res["month"].'月'.$res["day"].'日</p>';
-    $view .= '<p>＞詳細</p>';
-    $view .= '</button></a></div>';
+    if($res["img"]==NULL|| $res["img"]== 1|| $res["img"]== 2){
+      $event_img = "./img/noimg.jpg";
+    }
+    else{
+      $event_img = './upload/'.$res["img"];
+    }
+  $view .= '<div class="col-lg-4 col-md-6"><div class="card mb-4">';
+  $view .= '<a href="event_detail.php?id='.$res["e_id"].'" rel="noopener noreferrer">';
+  $view .= '<img class="card-img-top" src="'.$event_img.'" width="100%" height="180px">';
+  $view .= '<div class="card-body">';
+  $view .= '<h3 class="card-title">'.$res["title"].'</h3>';
+  $view .= '<p class="card-text"><i class="fas fa-calendar-alt"></i> '.$res["year"].'年'.$res["month"].'月'.$res["day"].'日</p>';
+  $view .= '<p class="card-text"><button class="btn btn-primary btn-block">詳しく見る</button></p>';
+  $view .= '</div>';
+  $view .= '</a></div></div>';
     
   }
 
@@ -34,35 +43,19 @@ if($status==false) {
 
 
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>イベント一覧</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-  <link rel="stylesheet" href="css/range.css">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- <link href="css/index.css" rel="stylesheet"> -->
-  <link href="./css/select.css" rel="stylesheet">
-  <link href="./css/login.css" rel="stylesheet">
-  <link href="./css/style_sp.css" rel="stylesheet">
-</head>
-<body class="main">
-    
-<!-- Head[Start] -->
 <?php
-include("l_header.php");
+$title = "イベント一覧";
+include("include/header_owner.php");
 ?>
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
-<h2>イベント一覧</h2>
-<div><?=$view?></div>
+<div class="container mt-4">
+<h1>イベント一覧</h1>
+<div class="row"><?=$view?></div>
+</div>
+
 <!-- Main[End] -->
 <?php
-include("footer.php");
+include("include/footer_owner.php");
 ?>
-</body>
-</html>

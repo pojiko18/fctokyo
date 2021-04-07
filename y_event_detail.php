@@ -220,13 +220,6 @@ function test2(position) {
 
         <!-- 日程入れる -->
         <div class="row">
-            <div class="col-lg-12">
-
-            </div>
-        </div>
-
-
-        <div class="row">
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body event-detail-overview">
