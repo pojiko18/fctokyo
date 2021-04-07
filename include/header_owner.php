@@ -31,7 +31,7 @@
                             <a class="nav-link" href="dashboard.php">ダッシュボード</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="eventt.php">イベント作成</a>
+                            <a class="nav-link" href="event.php">イベント作成</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="event_list.php">イベント一覧</a>

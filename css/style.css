@@ -365,6 +365,7 @@ a.user-eventlist-box:hover{
 /* ------------------------------------------------------
 -------------- User Edit Section Styling Starts --------------
 --------------------------------------------------------*/
-.user-edit label{
+.user-edit label,
+.event-edit label{
 	font-weight: bold;
 }
