@@ -1,53 +1,39 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
- <link rel="stylesheet" href="css/range.css">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- <link href="css/index.css" rel="stylesheet"> -->
-  <link href="./css/select.css" rel="stylesheet">
-  <link href="./css/login.css" rel="stylesheet">
-  <link href="./css/style_sp.css" rel="stylesheet">
-  <title>会員登録</title>
-</head>
-<body class="loginBody">
-
-<!-- Head[Start] -->
 <?php
-include("l_header.php");
+$title = "スタッフ登録";
+include("include/header_owner.php");
 ?>
 
 
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
-<div class="loginTitle">
-  
+<div class="container">
+    <div class="card my-5">
+        <div class="card-header">スタッフ登録</div>
 
-<form method="post" action="owner_insert.php" enctype="multipart/form-data" class="form">
-<h2>スタッフ登録</h2>
-  <div class="rediJumbotron">
-    <dl class="form-inner">
-      <dt class="form-title">ユーザー名</dt>
-      <dd class="form-item"><input type="text" name="name" class="rediTextForm"></dd>
-      <dt class="form-title">ID</dt>
-      <dd class="form-item"><input type="text" name="lid" class="rediTextForm"></dd>
-      <dt class="form-title">パスワード（6文字以上 半角英数字）</dt>
-      <dd class="form-item"><input   type="password" name="lpw" class="rediTextForm" minlength="6" pattern="[a-zA-Z0-9]+"></dd>
-    </dl>
-    <p class="btn-c">
-      <input type="submit" value="登録" class="btn">
-    </p>
-  </div>
-</form>
+        <div class="card-body">
+            <form method="post" action="owner_insert.php" enctype="multipart/form-data" class="form staff-edit">
+                <div class="form-group">
+                    <label for="form-staff-name">ユーザー名</label>
+                    <input id="form-staff-name" type="text" name="name" class="rediTextForm form-control">
+                </div>
+                <div class="form-group">
+                    <label for="form-staff-id">ID</label>
+                    <input id="form-staff-id" type="text" name="lid" class="rediTextForm form-control">
+                </div>
+                <div class="form-group">
+                    <label for="form-staff-password">パスワード（6文字以上 半角英数字）</label>
+                    <input id="form-staff-password" type="password" name="lpw" class="rediTextForm form-control"
+                        minlength="6" pattern="[a-zA-Z0-9]+">
+                </div>
+                <p class="btn-c">
+                    <input type="submit" value="登録" class="btn btn-primary">
+                </p>
+            </form>
+        </div>
+    </div>
 
 </div>
-<!-- Main[End] -->
 <?php
-include("footer.php");
+include("include/footer_owner.php");
 ?>
-
-
-</body>
-</html>

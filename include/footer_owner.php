@@ -13,7 +13,7 @@
                             <a class="nav-link" href="event_list.php">イベント一覧</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="owner_reg.php">スタッフ追加</a>
+                            <a class="nav-link" href="owner_reg.php">スタッフ登録</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="owner_logout.php">ログアウト</a>
