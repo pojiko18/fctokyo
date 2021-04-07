@@ -47,77 +47,80 @@ if($status_e==false) {
 } else {
   // var_dump($stmt_e);
     while( $res_eventlist = $stmt_e->fetch(PDO::FETCH_ASSOC)){ 
-      $view_event .= '<div class="box"><a href="y_event_detail.php?id='.$res_eventlist["e_id"].'" target="_blank" rel="noopener noreferrer"><button>';
-      $view_event .= '<h3>'.$res_eventlist["title"].'</h3>';
-      $view_event .= '<p>'.$res_eventlist["year"].'年'.$res_eventlist["month"].'月'.$res_eventlist["day"].'日</p>';
-      $view_event .= '<p>＞詳細</p>';
-      $view_event .= '</button></a></div>';
+      $view_event .= '<a href="y_event_detail.php?id='.$res_eventlist["e_id"].'" class="user-eventlist-box" rel="noopener noreferrer">';
+      $view_event .= '<div class="media">';
+      $event_img = $res_eventlist["img"];
+      if($res_eventlist["img"]==NULL|| $res_eventlist["img"]== 1|| $res_eventlist["img"]== 2){
+        $event_img = "noimg.png";
+      }
+      $view_event .= '<img src="upload/'. $event_img. '" width="100" class="mr-3 user-eventlist-img" name="upfile">';
+      $view_event .= '<div class="media-body">';
+      $view_event .= '<h4 class="media-title mb-1">'.$res_eventlist["title"].'</h4>';
+      $view_event .= '<p class="user-eventlist-day">'.$res_eventlist["year"].'年'.$res_eventlist["month"].'月'.$res_eventlist["day"].'日</p>';
+      $view_event .= '</div></div></a>';
 
       $point_count +=  $res_eventlist["point"];
   }
 }
-
-
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>マイページ</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-  <link rel="stylesheet" href="css/range.css">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="./css/index.css" rel="stylesheet">
-  <link href="./css/select.css" rel="stylesheet">
-  <link href="./css/login.css" rel="stylesheet">
-  <link href="./css/style_sp.css" rel="stylesheet">
-</head>
-<body id="main">
-<!-- Head[Start] -->
 <?php
-include("l_header.php");
+$title = "メンバー";
+include("include/header.php");
 ?>
+
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
 
-<!-- 自己紹介 -->
-<section>
-<div><?=$row["user_name"]?>さん</div>
-<!-- アイコン画像を表示させる（未登録：カオナシ） -->
-<?php if($row["img"]==NULL || $row["img"]== 1|| $row["img"]== 2){ ?> 
-<div><img src="./upload/kaonasi-icon.JPG" alt="" width="100"></div>
-<?php }else{?> 
-<div><img src="upload/<?=$row["img"]?>" width="100"></div>
-<?php } ?>
+<div class="user-main">
+    <div class="container">
+        <!-- 自己紹介 -->
+        <div class="text-center mt-5 mb-3 user-top">
+            <!-- アイコン画像を表示させる（未登録：カオナシ） -->
+            <?php if($row["img"]==NULL || $row["img"]== 1|| $row["img"]== 2){ ?>
+            <div><img src="./upload/kaonasi-icon.JPG" alt="" width="100" class="user-icon mb-3"></div>
+            <?php }else{?>
+            <div><img src="upload/<?=$row["img"]?>" width="100" class="user-icon mb-3"></div>
+            <?php } ?>
 
-<!-- 獲得ポイント、自己紹介など表示 -->
+            <h2><?=$row["user_name"]?></h2>
+            <div class="d-flex justify-content-center align-self-center mb-2 user-point"><img src="./img/fcpoint.svg" width="30" height="30" class="mr-2" alt="ポイント"> <?=$point_count?></div>
+            <div><a href="./mypage_edit.php?id=<?=$row["user_id"]?>">編集</a></div>
+        </div>
+    </div>
+</div>
 
+<div class="user-detail-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">自己紹介</h3>
+                        <p class="card-text"><i class="fas fa-birthday-cake fa-fw"></i><?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日</p>
+                        <p class="card-text"><i class="fas fa-home fa-fw"></i><?=$row["address"]?></p>
+                        <p class="card-text"><?=$row["text"]?></p>
+                    </div>
+                </div>
+            </div>
 
-<div>獲得ポイント数：<?=$point_count?></div>
-<br>
-<div><a href="./mypage_edit.php?id=<?=$row["user_id"]?>">編集</a></div>
-<br>
-<h2>自己紹介文</h2>
-<div>生年月日　：<?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日</div>
-<div>居住地　　：<?=$row["address"]?></div>
-<div>自己紹介　：<?=$row["text"]?></div>
-</section>
-
-<!-- イベント履歴 -->
-<section>
-<h2>イベント参加履歴</h2>
-<div><?=$view_event?></div>
-
-</section>
-
-
+            <!-- イベント履歴 -->
+            <div class="col-lg-7">
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title mb-0">イベント参加履歴</h3>
+                    </div>
+                    <div class="card-body">
+                        <div><?=$view_event?></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Main[End] -->
+
 <?php
-include("y_footer.php");
+include("include/footer.php");
 ?>
-</body>
-</html>

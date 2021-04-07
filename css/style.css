@@ -20,15 +20,15 @@ h3 {
 }
 .h4,
 h4 {
- font-size:1.5rem
+ font-size:1rem; /*1.5rem*/
 }
 .h5,
 h5 {
- font-size:1.25rem
+ font-size:0.9rem; /*1.25rem*/
 }
 .h6,
 h6 {
- font-size:1rem
+ font-size: 0.8rem; /*1rem*/
 }
 
 .card{
@@ -46,6 +46,9 @@ h6 {
 .card a p.card-text{
 	color: #333;
 }
+.card-text {
+	margin-bottom: .5rem;
+}
 .card-text i{
 	color:#bbb;
 	margin-right: .3rem;
@@ -53,6 +56,13 @@ h6 {
 
 .bkgd-white{
 	background-color: #fff;
+}
+
+.media-title{
+	font-weight: bold;
+}
+.media-body p:last-child{
+	margin-bottom: 0;
 }
 /* ------------------------------------------------------
 -------------- Main Section Styling Starts --------------
@@ -282,4 +292,72 @@ h6 {
 	height: 40px;
 	object-fit: cover;
 	border-radius: 50%;
+}
+
+/* ------------------------------------------------------
+-------------- User Section Styling Starts --------------
+--------------------------------------------------------*/
+.user-main{
+	background: #fcdede; /* Old browsers */
+	background: -moz-linear-gradient(top,  #fcdede 0%, #fff4f4 70%, #ffffff 99%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #fcdede 0%,#fff4f4 70%,#ffffff 99%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #fcdede 0%,#fff4f4 70%,#ffffff 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcdede', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+.user-top .user-icon{
+	width: 120px;
+	height: 120px;
+}
+
+.user-eventlist-box{
+	display: block;
+}
+a.user-eventlist-box:hover{
+	background: #fcdede; /* Old browsers */
+	background: -moz-linear-gradient(top,  #fcdede 0%, #fff4f4 70%, #ffffff 99%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #fcdede 0%,#fff4f4 70%,#ffffff 99%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #fcdede 0%,#fff4f4 70%,#ffffff 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcdede', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+.user-top .user-icon{
+	width: 120px;
+	height: 120px;
+}
+.user-point{
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+.user-eventlist-box{
+	display: block;
+	padding: 10px;
+	margin-bottom: .5rem;
+	color: #333;
+}
+a.user-eventlist-box:hover{
+	background: #fff7f7;
+	border-radius: 5px;
+}
+.user-eventlist-box:last-child{
+	margin-bottom: 0;
+}
+.user-eventlist-img{
+	border-radius: 5px;
+	width: 150px;
+	height: 90px;
+	object-fit: cover;
+}
+.user-eventlist-day{
+	color:#999;
+	font-size: .8rem;
+}
+@media (max-width:992px) {
+	.user-eventlist-box{
+		padding: 0;
+		margin-bottom: 1.5rem;
+	}
+
+	.user-eventlist-img{
+		width: 100px;
+		height: 60px;
+	}
 }

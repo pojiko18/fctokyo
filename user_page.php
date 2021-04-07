@@ -64,55 +64,44 @@ if($status_e==false) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ユーザーページ</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-  <link rel="stylesheet" href="css/range.css">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="./css/index.css" rel="stylesheet">
-  <link href="./css/select.css" rel="stylesheet">
-  <link href="./css/login.css" rel="stylesheet">
-  <link href="./css/style_sp.css" rel="stylesheet">
-</head>
-<body id="main">
-<!-- Head[Start] -->
 <?php
-include("l_header.php");
+$title = "メンバー";
+include("include/header.php");
 ?>
+
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
 
-<!-- 自己紹介 -->
-<section>
-<div><?=$row["user_name"]?>さん</div>
-<div><img src="upload/<?=$row["img"]?>" width="100"></div>
+<div class="container">
+    <!-- 自己紹介 -->
+    <div class="text-center">
+    <div><img src="upload/<?=$row["img"]?>" width="100" class="user-icon"></div>
+    <div><?=$row["user_name"]?>さん</div>
+    <div>獲得ポイント数：<?=$point_count?></div>
+    </div>
 
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title">自己紹介</h3>
+                <p class="card-text">生年月日　：<?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日</p>
+                <p class="card-text">居住地　　：<?=$row["address"]?></p>
+                <p class="card-text">自己紹介　：<?=$row["text"]?></p>
+              </div>
+            </div>
+        </div>
 
-
-<div>獲得ポイント数：<?=$point_count?></div>
-<h2>自己紹介文</h2>
-<div>生年月日　：<?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日</div>
-<div>居住地　　：<?=$row["address"]?></div>
-<div>自己紹介　：<?=$row["text"]?></div>
-</section>
-
-<!-- イベント履歴 -->
-<section>
-<h2>イベント参加履歴</h2>
-<div><?=$view_event?></div>
-
-</section>
-
-
-<!-- Main[End] -->
+        <!-- イベント履歴 -->
+        <div class="col-lg-7">
+            <div class="card">
+                <h2>イベント参加履歴</h2>
+                <div><?=$view_event?></div>
+            </div>
+        </div>
+    </div>
+        <!-- Main[End] -->
 <?php
-include("y_footer.php");
+include("include/footer.php");
 ?>
-</body>
-</html>

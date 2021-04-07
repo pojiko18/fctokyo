@@ -127,7 +127,6 @@ if($status_team==false) {
 
 <?php
 $title = "イベント詳細";
-$addhead ='<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">';
 include("include/header.php");
 ?>
 
@@ -226,10 +225,10 @@ function test2(position) {
                 <div class="card">
                     <div class="card-body event-detail-overview">
                         <h3 class="card-title">詳細</h3>
-                        <p class="card-text"><i class="fas fa-calendar-alt"></i>
+                        <p class="card-text"><i class="fas fa-calendar-alt fa-fw"></i>
                             <?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日
                             <?=$row["time"]?></p>
-                        <p class="card-text"><i class="fas fa-map-marker-alt"></i> <?=$row["place"]?></p>
+                        <p class="card-text"><i class="fas fa-map-marker-alt fa-fw"></i> <?=$row["place"]?></p>
                         <p class="card-text"><?=$row["contents"]?></p>
                     </div>
                 </div>

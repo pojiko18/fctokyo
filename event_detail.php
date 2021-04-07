@@ -88,10 +88,11 @@ if($status_bbs ==false) {
 
 } else {
   while( $bbs = $stmt_bbs->fetch(PDO::FETCH_ASSOC)){ 
-    $bbs_view .= '<div><img src="upload/'.$bbs["img"].'" width="100"></div>';
-    $bbs_view .= '<a href="./user_page.php?id='.$bbs["user_id"].'">'.$bbs["user_name"].'</a>:';
+    
+    $bbs_view .= '<li class="media mb-4"><img src="upload/'.$bbs["img"].'" width="100">';
+    $bbs_view .= '<div class="media-body"><a href="./user_page.php?id='.$bbs["user_id"].'">'.$bbs["user_name"].'</a>:';
     $bbs_view .= $bbs["comment"].'<br>';
-    $bbs_view .= $bbs["time"].'</div>';
+    $bbs_view .= $bbs["time"].'</div></li>';
 
   }
 }
@@ -161,7 +162,7 @@ include("l_header.php");
     </div>
   </form>
 
-  <div><?=$bbs_view?></div>
+  <ul class="list-unstyled"><?=$bbs_view?></ul>
 </section>
 
 
