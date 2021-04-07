@@ -40,16 +40,15 @@ if($status==false) {
     // 蝗活マップ
     if($i==0){
       //ループ初回のみ、ここを処理
-        $view_map .= '"'.$res['img_shop'].','.$res['lat'].','.$res['lon'].','.$res['indate_ina'].'"';
+        $view_map .= '"'.$res['img_shop'].','.$res['lat'].','.$res['lon'].','.$res['name'].','.$res['user_name'].','.$res['id'].','.$res['indate_ina'].'"';
     }else{
       //ループ2回めからこちらを処理
-        $view_map .=',"'.$res['img_shop'].','.$res['lat'].','.$res['lon'].','.$res['indate_ina'].'"';
+        $view_map .=',"'.$res['img_shop'].','.$res['lat'].','.$res['lon'].','.$res['name'].','.$res['user_name'].','.$res['id'].','.$res['indate_ina'].'"';
     }
     $i++;
     
     
   }
-var_dump($view_map);
 }
 ?>
 
@@ -86,7 +85,8 @@ p {
     <div class="map_area">
         <div class="myMap"></div>
     </div>
-
+    <div>赤いピンをクリックすると画像が見れます。<br>また画像をクリックすると詳細ページに移動します。</div>
+    <br>
     <div class="row"><?=$view?></div>
 </div>
 
@@ -114,7 +114,7 @@ function GetMap() {
     const map = new Bmap(".myMap");
 
     // 味スタを中心に日本地図が見えるように
-    map.startMap(35.664346828736, 139.52727071587, "load", 4);
+    map.startMap(35.664346828736, 139.52727071587, "load", 5);
 
     const options = new Array(<?=$view_map?>);
 
@@ -129,11 +129,12 @@ function GetMap() {
         options[i] = {
             "lat": gpoint[1],
             "lon": gpoint[2],
-            "title": "",
+            "title": '' + gpoint[3] + '',
             "pinColor": "#ff0000",
             "height": 300,
             "width": 320,
-            "description": '<img src="upload/' + gpoint[0] + '" width="100">',
+            "description": gpoint[4] + '<a href="inakatsu_detail.php?id=' +
+                gpoint[5] + '" rel="noopener noreferrer"><img src="upload/' + gpoint[0] + '" width="150"></a>',
             "show": false
         };
     }

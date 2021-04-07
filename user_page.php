@@ -3,15 +3,19 @@ session_start();
 include("funcs.php");
 loginCheck();
 
+
+
 //GETでid値を取得
 $u_id='';
   if (isset($_GET['id'])) {
     $u_id=(int)$_GET['id'];
   }
 
+$id =$_SESSION["id"];
 
 //DB接続
 $pdo = dbcon();
+
 
 //◆ユーザー情報の取得
 $sql = "SELECT * FROM users WHERE user_id=:u_id";
@@ -29,7 +33,6 @@ if($status==false) {
   //１データのみ抽出の場合はwhileループで取り出さない
   $row = $stmt->fetch();
 }
-
 
 
 //◆参加したイベントとイベント詳細をJOINさせて取得
@@ -51,17 +54,23 @@ if($status_e==false) {
 } else {
   // var_dump($stmt_e);
     while( $res_eventlist = $stmt_e->fetch(PDO::FETCH_ASSOC)){ 
-      $view_event .= '<div class="box"><a href="y_event_detail.php?id='.$res_eventlist["e_id"].'" target="_blank" rel="noopener noreferrer"><button>';
-      $view_event .= '<h3>'.$res_eventlist["title"].'</h3>';
-      $view_event .= '<p>'.$res_eventlist["year"].'年'.$res_eventlist["month"].'月'.$res_eventlist["day"].'日</p>';
-      $view_event .= '<p>＞詳細</p>';
-      $view_event .= '</button></a></div>';
+      $view_event .= '<a href="y_event_detail.php?id='.$res_eventlist["e_id"].'" class="user-eventlist-box" rel="noopener noreferrer">';
+      $view_event .= '<div class="media">';
+      if($res_eventlist["img"]==NULL|| $res_eventlist["img"]== 1|| $res_eventlist["img"]== 2){
+        $event_img = "./img/noimg.jpg";
+      }
+      else{
+        $event_img = './upload/'.$res_eventlist["img"];
+      }
+      $view_event .= '<img src="'. $event_img. '" width="100" class="mr-3 user-eventlist-img" name="upfile">';
+      $view_event .= '<div class="media-body">';
+      $view_event .= '<h4 class="media-title mb-1">'.$res_eventlist["title"].'</h4>';
+      $view_event .= '<p class="user-eventlist-day">'.$res_eventlist["year"].'年'.$res_eventlist["month"].'月'.$res_eventlist["day"].'日</p>';
+      $view_event .= '</div></div></a>';
 
       $point_count +=  $res_eventlist["point"];
   }
 }
-
-
 ?>
 
 <?php
@@ -73,35 +82,57 @@ include("include/header.php");
 
 <!-- Main[Start] -->
 
-<div class="container">
-    <!-- 自己紹介 -->
-    <div class="text-center">
-    <div><img src="upload/<?=$row["img"]?>" width="100" class="user-icon"></div>
-    <div><?=$row["user_name"]?>さん</div>
-    <div>獲得ポイント数：<?=$point_count?></div>
-    </div>
+<div class="user-main">
+    <div class="container">
+        <!-- 自己紹介 -->
+        <div class="text-center mt-5 mb-3 user-top">
+            <!-- アイコン画像を表示させる（未登録：カオナシ） -->
+            <?php if($row["img"]==NULL || $row["img"]== 1|| $row["img"]== 2){ ?>
+            <div><img src="./img/userimg.jpg" alt="" width="100" class="user-icon user-icon-lg mb-3"></div>
+            <?php }else{?>
+            <div><img src="upload/<?=$row["img"]?>" width="100" class="user-icon user-icon-lg mb-3"></div>
+            <?php } ?>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <div class="card">
-              <div class="card-body">
-                <h3 class="card-title">自己紹介</h3>
-                <p class="card-text">生年月日　：<?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日</p>
-                <p class="card-text">居住地　　：<?=$row["address"]?></p>
-                <p class="card-text">自己紹介　：<?=$row["text"]?></p>
-              </div>
-            </div>
-        </div>
+            <h2><?=$row["user_name"]?></h2>
+            <div class="d-flex justify-content-center align-self-center mb-2 user-point"><img src="./img/fcpoint.svg"
+                    width="30" height="30" class="mr-2" alt="ポイント"> <?=$point_count?></div>
 
-        <!-- イベント履歴 -->
-        <div class="col-lg-7">
-            <div class="card">
-                <h2>イベント参加履歴</h2>
-                <div><?=$view_event?></div>
-            </div>
         </div>
     </div>
-        <!-- Main[End] -->
+</div>
+
+<div class="user-detail-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">自己紹介</h3>
+                        <p class="card-text"><i
+                                class="fas fa-birthday-cake fa-fw"></i><?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日
+                        </p>
+                        <p class="card-text"><i class="fas fa-home fa-fw"></i><?=$row["address"]?></p>
+                        <p class="card-text"><?=$row["text"]?></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- イベント履歴 -->
+            <div class="col-lg-7">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0">イベント参加履歴</h3>
+                    </div>
+                    <div class="card-body">
+                        <div><?=$view_event?></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main[End] -->
+
 <?php
 include("include/footer.php");
 ?>

@@ -87,7 +87,8 @@ include("include/header.php");
             <?php } ?>
 
             <h2><?=$row["user_name"]?></h2>
-            <div class="d-flex justify-content-center align-self-center mb-2 user-point"><img src="./img/fcpoint.svg" width="30" height="30" class="mr-2" alt="ポイント"> <?=$point_count?></div>
+            <div class="d-flex justify-content-center align-self-center mb-2 user-point"><img src="./img/fcpoint.svg"
+                    width="30" height="30" class="mr-2" alt="ポイント"> <?=$point_count?></div>
             <div><a href="./mypage_edit.php?id=<?=$row["user_id"]?>">編集</a></div>
         </div>
     </div>
@@ -100,7 +101,9 @@ include("include/header.php");
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">自己紹介</h3>
-                        <p class="card-text"><i class="fas fa-birthday-cake fa-fw"></i><?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日</p>
+                        <p class="card-text"><i
+                                class="fas fa-birthday-cake fa-fw"></i><?=$row["year"]?>年<?=$row["month"]?>月<?=$row["day"]?>日
+                        </p>
                         <p class="card-text"><i class="fas fa-home fa-fw"></i><?=$row["address"]?></p>
                         <p class="card-text"><?=$row["text"]?></p>
                     </div>
@@ -111,7 +114,7 @@ include("include/header.php");
             <div class="col-lg-7">
                 <div class="card">
                     <div class="card-header">
-                      <h3 class="card-title mb-0">イベント参加履歴</h3>
+                        <h3 class="card-title mb-0">イベント参加履歴</h3>
                     </div>
                     <div class="card-body">
                         <div><?=$view_event?></div>
