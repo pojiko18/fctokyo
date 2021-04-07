@@ -1,47 +1,32 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
- <link rel="stylesheet" href="css/range.css">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- <link href="css/index.css" rel="stylesheet"> -->
-  <link href="./css/select.css" rel="stylesheet">
-  <link href="./css/login.css" rel="stylesheet">
-  <link href="./css/style_sp.css" rel="stylesheet">
-<title>運営ログイン</title>
-</head>
-<body class="loginBody">
-
-<!-- Head[Start] -->
 <?php
-include("l_header.php");
+$title = "運営ログイン";
+include("include/header_owner.php");
 ?>
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
-<div class="loginTitle">
-  <form method="post" action="owner_login_act.php"  class="form">
-  <h2>スタッフ ログイン</h2>
-    <div class="loginField">
-      <dl class="form-inner">
-        <dt class="form-title">ID / メードアドレス</dt>
-        <dd class="form-item"><input type="text" name="lid" class="rediTextForm"></dd>
-        <dt class="form-title">パスワード（6文字以上 半角英数字）</dt>
-        <dd class="form-item"><input   type="password" name="lpw" class="rediTextForm" minlength="6" pattern="[a-zA-Z0-9]+"></dd>
-      </dl>
-      <p class="btn-c">
-        <input type="submit" value="ログインする" class="btn">
-      </p>
+<div class="container">
+    <div class="card form-register mt-5">
+        <div class="card-header">
+            <h1 class="h3 font-weight-normal text-center">スタッフ ログイン</h1>
+        </div>
+        <div class="card-body">
+            <form method="post" action="owner_login_act.php" class="form form-signin">
+
+                <label for="lid" class="sr-only">ID</label>
+                <input type="text" name="lid" class="rediTextForm form-control" placeholder="ID">
+                <label for="lpw" class="sr-only">パスワード</label>
+                <input type="password" name="lpw" class="rediTextForm form-control mb-4" placeholder="パスワード"
+                    minlength="6" pattern="[a-zA-Z0-9]+">
+                <p>
+                    <input type="submit" name="login" value="ログインする" id="btn" class="btn btn-lg btn-primary btn-block">
+                </p>
+            </form>
+        </div>
     </div>
-  </form>
+</div>
 
 <!-- Main[End] -->
-</div>
-<footer>created by pojico18 of G'sACADEMIY UNIT_SAPPORO_DEV1</footer>
-
-</body>
-</html>
-
-
+<?php
+include("include/footer_owner.php");
+?>
