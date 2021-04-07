@@ -79,9 +79,9 @@ include("include/header.php");
         <div class="text-center mt-5 mb-3 user-top">
             <!-- アイコン画像を表示させる（未登録：カオナシ） -->
             <?php if($row["img"]==NULL || $row["img"]== 1|| $row["img"]== 2){ ?>
-            <div><img src="./img/userimg.jpg" alt="" width="100" class="user-icon mb-3"></div>
+            <div><img src="./img/userimg.jpg" alt="" width="100" class="user-icon user-icon-lg mb-3"></div>
             <?php }else{?>
-            <div><img src="upload/<?=$row["img"]?>" width="100" class="user-icon mb-3"></div>
+            <div><img src="upload/<?=$row["img"]?>" width="100" class="user-icon user-icon-lg mb-3"></div>
             <?php } ?>
 
             <h2><?=$row["user_name"]?></h2>

@@ -319,7 +319,7 @@ a.user-eventlist-box:hover{
 	background: linear-gradient(to bottom,  #fcdede 0%,#fff4f4 70%,#ffffff 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcdede', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
 }
-.user-top .user-icon{
+.user-icon-lg{
 	width: 120px;
 	height: 120px;
 }
@@ -360,4 +360,11 @@ a.user-eventlist-box:hover{
 		width: 100px;
 		height: 60px;
 	}
+}
+
+/* ------------------------------------------------------
+-------------- User Edit Section Styling Starts --------------
+--------------------------------------------------------*/
+.user-edit label{
+	font-weight: bold;
 }
