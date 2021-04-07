@@ -50,6 +50,10 @@ h6 {
 	color:#bbb;
 	margin-right: .3rem;
 }
+
+.bkgd-white{
+	background-color: #fff;
+}
 /* ------------------------------------------------------
 -------------- Main Section Styling Starts --------------
 --------------------------------------------------------*/
@@ -244,4 +248,38 @@ h6 {
 	.checkin{
 		margin-left:0;
 	}
+}
+
+/* ------------------------------------------------------
+-------------- BBS Section Styling Starts --------------
+--------------------------------------------------------*/
+.bbs-box{
+	margin-bottom: 1rem;
+}
+.bbs-box:last-child{
+	margin-bottom: 0;
+}
+.bbs-text-box{
+	background: #f7f7fb;
+	border-radius: 5px;
+	padding: 5px 10px;
+}
+.bbs-name{
+	font-weight: bold;
+	margin-bottom: 0.2rem;
+}
+.bbs-comment{
+	margin-bottom: 0.2rem;
+}
+.bbs-time{
+	color:#999;
+	font-size: .8rem;
+	margin-bottom: 0;
+}
+
+.user-icon{
+	width: 40px;
+	height: 40px;
+	object-fit: cover;
+	border-radius: 50%;
 }
