@@ -23,9 +23,14 @@ if($status==false) {
 }else{
   //Selectデータの数だけ自動でループしてくれる
   while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
+    $event_img = './upload/'.$res_eventlist["img"];
+      if($res_eventlist["img"]==NULL|| $res_eventlist["img"]== 1|| $res_eventlist["img"]== 2){
+        $event_img = "./img/noimg.jpg";
+      }
+
     $view .= '<div class="col-lg-4 col-md-6"><div class="card mb-4">';
     $view .= '<a href="y_event_detail.php?id='.$res["e_id"].'" rel="noopener noreferrer">';
-    $view .= '<img class="card-img-top" src="upload/'.$res["img"].'" width="100%" height="180px">';
+    $view .= '<img class="card-img-top" src="'.$event_img.'" width="100%" height="180px">';
     $view .= '<div class="card-body">';
     $view .= '<h3 class="card-title">'.$res["title"].'</h3>';
     $view .= '<p class="card-text"><i class="fas fa-calendar-alt"></i> '.$res["year"].'年'.$res["month"].'月'.$res["day"].'日</p>';

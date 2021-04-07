@@ -49,11 +49,11 @@ if($status_e==false) {
     while( $res_eventlist = $stmt_e->fetch(PDO::FETCH_ASSOC)){ 
       $view_event .= '<a href="y_event_detail.php?id='.$res_eventlist["e_id"].'" class="user-eventlist-box" rel="noopener noreferrer">';
       $view_event .= '<div class="media">';
-      $event_img = $res_eventlist["img"];
+      $event_img = './upload/'.$res_eventlist["img"];
       if($res_eventlist["img"]==NULL|| $res_eventlist["img"]== 1|| $res_eventlist["img"]== 2){
-        $event_img = "noimg.png";
+        $event_img = "./img/noimg.jpg";
       }
-      $view_event .= '<img src="upload/'. $event_img. '" width="100" class="mr-3 user-eventlist-img" name="upfile">';
+      $view_event .= '<img src="'. $event_img. '" width="100" class="mr-3 user-eventlist-img" name="upfile">';
       $view_event .= '<div class="media-body">';
       $view_event .= '<h4 class="media-title mb-1">'.$res_eventlist["title"].'</h4>';
       $view_event .= '<p class="user-eventlist-day">'.$res_eventlist["year"].'年'.$res_eventlist["month"].'月'.$res_eventlist["day"].'日</p>';
@@ -79,7 +79,7 @@ include("include/header.php");
         <div class="text-center mt-5 mb-3 user-top">
             <!-- アイコン画像を表示させる（未登録：カオナシ） -->
             <?php if($row["img"]==NULL || $row["img"]== 1|| $row["img"]== 2){ ?>
-            <div><img src="./upload/kaonasi-icon.JPG" alt="" width="100" class="user-icon mb-3"></div>
+            <div><img src="./img/userimg.jpg" alt="" width="100" class="user-icon mb-3"></div>
             <?php }else{?>
             <div><img src="upload/<?=$row["img"]?>" width="100" class="user-icon mb-3"></div>
             <?php } ?>

@@ -96,8 +96,12 @@ if($status_bbs ==false) {
 
 } else {
   while( $bbs = $stmt_bbs->fetch(PDO::FETCH_ASSOC)){ 
+    $bbs_img = './upload/'.$bbs["img"];
+    if($bbs["img"]==NULL|| $bbs["img"]== 1|| $bbs["img"]== 2){
+      $bbs_img = "./img/userimg.jpg";
+    }
 
-    $bbs_view .= '<li class="media bbs-box"><img src="upload/'.$bbs["img"].'" width="30" class="mr-2 user-icon">';
+    $bbs_view .= '<li class="media bbs-box"><img src="'.$bbs_img.'" width="30" class="mr-2 user-icon">';
     $bbs_view .= '<div class="media-body bbs-text-box"><p class="bbs-name"><a href="./user_page.php?id='.$bbs["user_id"].'">'.$bbs["user_name"].'</a></p>';
     $bbs_view .= '<p class="bbs-comment">'.nl2br($bbs["comment"]).'</p>';
     $bbs_view .= '<p class="bbs-time">'.$bbs["time"].'</p></div></li>';
@@ -189,7 +193,7 @@ function test2(position) {
 <div class="event-main">
     <div class="event-main-box">
         <?php if($row["img"]==NULL|| $row["img"]== 1|| $row["img"]== 2){ ?>
-        <div><img src="./upload/noimg.png" alt="" width="100%" class="event-main-img"></div>
+        <div><img src="./img/noimg.jpg" alt="" width="100%" class="event-main-img"></div>
         <?php }else{?>
         <div><img src="upload/<?=$row["img"]?>" width="100%" class="event-main-img" name="upfile"></div>
         <?php } ?>
