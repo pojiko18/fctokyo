@@ -49,9 +49,11 @@ if($status_e==false) {
     while( $res_eventlist = $stmt_e->fetch(PDO::FETCH_ASSOC)){ 
       $view_event .= '<a href="y_event_detail.php?id='.$res_eventlist["e_id"].'" class="user-eventlist-box" rel="noopener noreferrer">';
       $view_event .= '<div class="media">';
-      $event_img = './upload/'.$res_eventlist["img"];
       if($res_eventlist["img"]==NULL|| $res_eventlist["img"]== 1|| $res_eventlist["img"]== 2){
         $event_img = "./img/noimg.jpg";
+      }
+      else{
+        $event_img = './upload/'.$res_eventlist["img"];
       }
       $view_event .= '<img src="'. $event_img. '" width="100" class="mr-3 user-eventlist-img" name="upfile">';
       $view_event .= '<div class="media-body">';

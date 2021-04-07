@@ -68,7 +68,7 @@ if($status_sanka ==false) {
   while( $sanka = $stmt_sanka->fetch(PDO::FETCH_ASSOC)){ 
       // $sanka_event .= $sanka["user_name"].'<br>';←これで名前取ってこれる
       if($u_id != $sanka["user_id"]){
-      $sanka_event .= '<li><a href="./user_page.php?id='.$sanka["user_id"].'">'.$sanka["user_name"].'</a></li>';
+      $sanka_event .= '<li><a href="./mypage.php?id='.$sanka["user_id"].'">'.$sanka["user_name"].'</a></li>';
       }else{
       $sanka_event .= '<li>'.$sanka["user_name"].'</li>';
       }
@@ -96,13 +96,15 @@ if($status_bbs ==false) {
 
 } else {
   while( $bbs = $stmt_bbs->fetch(PDO::FETCH_ASSOC)){ 
-    $bbs_img = './upload/'.$bbs["img"];
     if($bbs["img"]==NULL|| $bbs["img"]== 1|| $bbs["img"]== 2){
       $bbs_img = "./img/userimg.jpg";
     }
+    else{
+        $bbs_img = './upload/'.$bbs["img"];
+    }
 
     $bbs_view .= '<li class="media bbs-box"><img src="'.$bbs_img.'" width="30" class="mr-2 user-icon">';
-    $bbs_view .= '<div class="media-body bbs-text-box"><p class="bbs-name"><a href="./user_page.php?id='.$bbs["user_id"].'">'.$bbs["user_name"].'</a></p>';
+    $bbs_view .= '<div class="media-body bbs-text-box"><p class="bbs-name"><a href="./mypage.php?id='.$bbs["user_id"].'">'.$bbs["user_name"].'</a></p>';
     $bbs_view .= '<p class="bbs-comment">'.nl2br($bbs["comment"]).'</p>';
     $bbs_view .= '<p class="bbs-time">'.$bbs["time"].'</p></div></li>';
 
@@ -284,7 +286,7 @@ function test2(position) {
                     <div class="card-body">
                         <h3 class="card-title">参加者数 <?=$sanka_count?></h3>
                         <div class="card-text">
-                            <ul><?=$sanka_event?></ul>
+                            <ul class="list-unstyled"><?=$sanka_event?></ul>
                         </div>
                     </div>
                 </div>
@@ -307,9 +309,11 @@ function test2(position) {
                         </div>
                     </form>
                     </div>
+                    <?php if($bbs_view){ ?>
                     <div class="card-footer bkgd-white">
                     <ul class="list-unstyled mb-0"><?=$bbs_view?></ul>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
