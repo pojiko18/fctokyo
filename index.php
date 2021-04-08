@@ -2,42 +2,36 @@
 
 session_start();
 include("funcs.php");
-loginCheck();
+//loginCheck();
 
 //GETでid値を取得
-$id =$_SESSION["id"];
+//$id =$_SESSION["id"];
 
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>ログイン後のページ</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="./css/login.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
-    <link href="./css/style_sp.css" rel="stylesheet">
-    
-</head>
-<body>
-
-<!-- Head[Start] -->
-
 <?php
-include("l_header.php");
+$title = "FC共闘";
+include("include/header.php");
 ?>
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
-<p>ユーザーのイベント一覧ページ</p>
-<a href="./logout.php">ログアウト</a>
-</body>
-</html>
+<div class="main" id="main">
+    <!-- Main Section-->
+    <div class="hero-section">
+        <div class="container nopadding">
+            <div class="col-md-12">
+                <div class="hero-content text-center">
+                    <h1 class="wow fadeInUp" data-wow-delay="0.1s">クラブと<br class="pc-none">サポーターが<br>
+                        <span class="text-danger text-shadow-white">共</span>に<span class="text-danger text-shadow-white">闘</span>う<br class="pc-none">新たる世界へ</h1>
+                    <p><a href="reg.php" class="btn btn-danger btn-block btn-lg wow fadeInUp">新規会員登録</a></p>
+                    <p><a href="login.php" class="btn btn-outline-danger btn-block btn-lg wow fadeInUp">ログイン</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-
-
-
-
+<?php
+include("include/footer.php");
+?>

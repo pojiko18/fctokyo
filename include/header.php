@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/all.min.css">
-    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     
     <?php if(isset($addhead)) echo $addhead ?>
     
@@ -34,7 +33,7 @@
                             <a class="nav-link" href="y_event_list.php">イベント一覧</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">このページについて</a>
+                            <a class="nav-link" href="/">このページについて</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">ログアウト</a>

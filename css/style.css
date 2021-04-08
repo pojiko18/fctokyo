@@ -77,10 +77,10 @@ h6 {
 /* ----- Hero Section Styling Starts ----- */
 
 .hero-section {
-	background:url(../img/header-bg.jpg);
+	background:url(/img/header-bg.jpg);
 	background-size: cover;
 	background-position: center;
-	padding: 150px 0 0 0;
+	padding: 100px 0 0 0;
 }
 
 .hero-content {
@@ -89,15 +89,20 @@ h6 {
 }
 
 .hero-content h1 {
-	font-size: 34px;
+	font-size: 3rem;
 	font-weight: 900;
 	color: #fff;
-	line-height: 1.2;
+	line-height: 1.4;
 	letter-spacing: -1px;
 	margin: 0 0 50px 0;
 	text-shadow: 0 0 5px #333;
 }
-
+.text-shadow-white{
+	text-shadow: 0 0 5px #fff;
+}
+.pc-none{
+	display:inline-block;
+}
 .hero-content p {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
@@ -127,7 +132,8 @@ h6 {
 	}
 
 	.hero-content h1 {
-		font-size: 54px;
+		font-size: 4rem;
+		margin: 0 0 50px 0;
 	}
 
 	.product .hero-content {
@@ -135,16 +141,22 @@ h6 {
 		text-align: left;
 	}
 
-	.hero-content h1 {
-		font-size: 48px;
-		margin: 0 0 50px 0;
-	}
-
 	.hero-content p {
 		font-size: 14px;
 	}
+	.pc-none{
+		display:none;
+	}
+	
 }
-
+@media only screen and (min-width: 992px) {
+	.hero-section {
+		padding: 100px 0 100px 0;
+	}
+	.hero-content h1 {
+		font-size: 5rem;
+	}
+}
 /* ------------------------------------------------------
 -------------- Footer Section Styling Starts --------------
 --------------------------------------------------------*/
