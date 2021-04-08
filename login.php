@@ -28,10 +28,10 @@ include("include/header.php");
                 <p class="alert alert-danger"><?php echo $err['lpw']; ?></p>
                 <?php endif; ?>
                 <label for="lid" class="sr-only">ID / メールアドレス</label>
-                <input type="text" name="lid" class="lid form-control" placeholder="ID または メールアドレス">
+                <input type="text" name="lid" class="lid form-control" placeholder="ID または メールアドレス" required>
                 <label for="lpw" class="sr-only">パスワード</label>
                 <input type="password" name="lpw" class="lpw form-control mb-4" placeholder="パスワード" minlength="6"
-                    pattern="[a-zA-Z0-9]+">
+                    pattern="[a-zA-Z0-9]+" required>
                 <p>
                     <input type="submit" name="login" value="ログインする" id="btn" class="btn btn-lg btn-primary btn-block">
                 </p>
