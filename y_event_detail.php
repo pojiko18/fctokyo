@@ -315,7 +315,7 @@ function test2(position) {
                             <textarea name="bbs" rows="3" placeholder="メッセージを入力" class="form-control mb-3"></textarea>
                             <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
                             <input type="hidden" name="u_id" value="<?=$u_id?>">
-                            <div class="submit card-text"">
+                            <div class="submit card-text">
                             <input type=" submit" value="送信" class="btn btn-primary">
                             </div>
                         </form>
