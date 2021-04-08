@@ -66,14 +66,28 @@ if($aikotoba == ""){
       //SQL実行時にエラーがある場合（エラーオブジェクト取得して表示）
       $error = $stmt2->errorInfo();
       exit("QueryError:".$error[2]);
-    }else {  
-      echo '<h2>チェックインしました！</h2><div>'.$row["point"].'ポイントを獲得しました！<div>';
+    }else {
+      include("include/header.php");
+      $view = '';
+      $view .= '<div class="container my-5">';
+      $view .= '<h2 class="text-center">チェックインしました！</h2>';
+      $view .= '<div class="d-flex justify-content-center align-self-center mb-2 user-point">';
+      $view .= '<img src="./img/fcpoint.svg"
+      width="30" height="30" class="mr-2" alt="ポイント">'.$row["point"].'ポイントを獲得しました！';
+      $view .= '<br><small>（5秒後にイベントページに戻ります）</small></div>';
+      $view .= '</div>';
+      echo $view;
       header("refresh:5;url=y_event_detail.php?id=".$row["e_id"]);
       // header("Location: done.php");
     }
     
 }else{
-    echo "合言葉が間違っています。合言葉を入れ直してください。（5秒後にイベントページに戻ります）";
+    include("include/header.php");
+    $view = '';
+    $view .= '<div class="container my-5">';
+    $view .= '<p>合言葉が間違っています。合言葉を入れ直してください。<br><small>（5秒後にイベントページに戻ります）</small></p>';
+    $view .= '</div>';
+    echo $view;
     header( "refresh:5;url=y_event_detail.php?id=".$row["e_id"]);
 }
 

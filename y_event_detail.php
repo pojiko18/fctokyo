@@ -187,7 +187,7 @@ function test2(position) {
 
         form.submit();
     } else {
-        $(".ng").html("きちんとチェックインできませんでした");
+        $(".ng").addClass("d-block").removeClass("d-none").html("正しくチェックインできませんでした。場所を変えて再度お試しください。");
     }
 }
 </script>
@@ -200,16 +200,7 @@ function test2(position) {
         <div><img src="upload/<?=$row["img"]?>" width="100%" class="event-main-img" name="upfile"></div>
         <?php } ?>
         <div class="container py-4">
-            <div class="row">
-                <div class="col-lg-9">
-                    <h2 class="event-detail-title"><?=$row["title"]?></h2>
-                </div>
-                <?php if($row_e == true){ ?>
-                <div class="col-lg-3 text-lg-right">
-                    <p class="checkin"><i class="fas fa-check"></i> チェックイン済み</p>
-                </div>
-                <?php } ?>
-            </div>
+            <h2 class="event-detail-title"><?=$row["title"]?></h2>
         </div>
     </div>
 </div>
@@ -234,42 +225,69 @@ function test2(position) {
             </div>
 
             <div class="col-lg-4">
-                <!-- 合言葉入れるところ -->
-                <?php if($row_e != true){ ?>
-                <div class="card">
-                    <div class="card-header">合言葉</div>
+                <!-- ポイントゲット済み -->
+                <?php if($row_e['point'] > 0){ ?>     
+                    <div class="card border-danger">
+                        <div class="card-body">        
+                            <div class="d-flex justify-content-center align-self-center user-point">
+                                <img src="./img/fcpoint.svg" width="30" height="30" class="mr-2" alt="ポイント">
+                                <?php echo $row_e['point']; ?>ポイントゲットしました！
+                            </div>
+                        </div>
+                    </div>
+                <?php }else{ ?>
+                <div class="card border-danger">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-center align-self-center user-point">
+                            <img src="./img/fcpoint.svg" width="30" height="30" class="mr-2" alt="ポイント"> ポイントゲット
+                        </div>
+                    </div>
 
                     <!-- ココにスタジアムチェックイン入れる -->
                     <div class="card-body">
-
-                        <p class="card-text">
-                            <input type="submit" value="スタジアムチェックインする" class="btn btn-primary btn-block"
+                        <!-- きちんとチェックインできなかった人への注意書きを表示 -->
+                        <div class="ng alert alert-danger d-none"></div>
+                        <p class="card-text mb-4 pb-4 border-bottom">
+                            <input type="submit" value="スタジアムチェックインする" class="btn btn-danger btn-block"
                                 id="js-show-popup" onclick="test()">
                         </p>
-                        <!-- きちんとチェックインできなかった人への注意書きを表示 -->
-                        <div class="ng" style="color:red"></div>
 
-                    </div>
-
-                    <div class="card-body">
-                        <?php if($row_e == true){ ?>
-                        <!-- もしチェックインすみなら合言葉フォームを非表示 -->
-                        <div></div>
-                        <?php }else{ ?>
-                        <form method="post" action="aikotoba_act.php" class="form">
+                        <!-- 合言葉入れるところ -->
+                        <form method="post" action="aikotoba_act.php" class="form needs-validation" novalidate>
                             <div class="form-group">
-
                                 <label for="aikotoba">ライブ参加の方は合言葉を入力してください。</label>
-                                <input type="text" id="aikotoba" name="aikotoba" class="form-control">
+                                <input type="text" id="aikotoba" name="aikotoba" class="form-control" required>
+                                <div class="invalid-feedback">
+                                    合言葉を入力してください。
+                                </div>
                             </div>
                             <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
                             <input type="hidden" name="u_id" value="<?=$u_id?>">
                             <input type="hidden" name="point" value="<?=$row["point"]?>">
                             <p class="card-text">
-                                <input type="submit" value="送信する" class="btn btn-primary btn-block" id="js-show-popup">
+                                <input type="submit" value="送信する" class="btn btn-danger btn-block" id="js-show-popup">
                             </p>
                         </form>
-                        <?php } ?>
+                        <script>
+                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+                        (function() {
+                        'use strict';
+                        window.addEventListener('load', function() {
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            var forms = document.getElementsByClassName('needs-validation');
+                            // Loop over them and prevent submission
+                            var validation = Array.prototype.filter.call(forms, function(form) {
+                            form.addEventListener('submit', function(event) {
+                                if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                }
+                                form.classList.add('was-validated');
+                            }, false);
+                            });
+                        }, false);
+                        })();
+                        </script>
                     </div>
                 </div>
                 <?php } ?>
