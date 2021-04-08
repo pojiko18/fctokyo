@@ -14,7 +14,7 @@ include("include/header.php");
 
 <!-- Main[Start] -->
 <div class="container">
-    <div class="card form-register mt-5">
+    <div class="card form-register my-5">
         <div class="card-header">
             <h1 class="h3 font-weight-normal text-center">ログイン</h1>
         </div>
