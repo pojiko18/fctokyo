@@ -10,7 +10,10 @@
                             <a class="nav-link" href="y_event_list.php">イベント一覧</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">このページについて</a>
+                            <a class="nav-link" href="inakatsu.php">蝗活(いなかつ)</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">このページについて</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">ログアウト</a>

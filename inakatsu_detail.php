@@ -64,11 +64,17 @@ if($status_bbs ==false) {
 
 } else {
   while( $bbs = $stmt_bbs->fetch(PDO::FETCH_ASSOC)){ 
-    $bbs_view .= '<div><img src="upload/'.$bbs["img"].'" width="100"></div>';
-    $bbs_view .= '<a href="./user_page.php?id='.$bbs["user_id"].'">'.$bbs["user_name"].'</a>:';
-    $bbs_view .= $bbs["comment"].'<br>';
-    $bbs_view .= $bbs["indate"].'</div>';
-
+    if($bbs["img"]==NULL|| $bbs["img"]== 1|| $bbs["img"]== 2){
+        $bbs_img = "./img/userimg.jpg";
+      }
+      else{
+          $bbs_img = './upload/'.$bbs["img"];
+      }
+  
+      $bbs_view .= '<li class="media bbs-box"><img src="'.$bbs_img.'" width="30" class="mr-2 user-icon">';
+      $bbs_view .= '<div class="media-body bbs-text-box"><p class="bbs-name"><a href="./user_page.php?id='.$bbs["user_id"].'">'.$bbs["user_name"].'</a></p>';
+      $bbs_view .= '<p class="bbs-comment">'.nl2br($bbs["comment"]).'</p>';
+      $bbs_view .= '<p class="bbs-time">'.$bbs["indate"].'</p></div></li>';
   }
 }
 
@@ -107,28 +113,32 @@ include("include/header.php");
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <!-- 時間あればチャット入れる -->
-            <section>
-                <h3 id="bbs">メッセージ</h3>
-                <form method="post" action="ina_bbs.php" class="form">
-                    <textarea name="bbs" rows="3" placeholder="メッセージを入力"></textarea>
-                    <input type="hidden" name="id" value="<?=$row["id"]?>">
-                    <input type="hidden" name="u_id" value="<?=$row["user_id"]?>">
-                    <div class="submit">
-                        <input type="submit" value="送信">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- 時間あればチャット入れる -->
+                <div class="card">
+                    <div class="card-header" id="bbs">メッセージ</div>
+
+                    <div class="card-body">
+                        <form method="post" action="ina_bbs.php" class="form">
+                            <textarea name="bbs" rows="3" placeholder="メッセージを入力" class="form-control mb-3"></textarea>
+                            <input type="hidden" name="id" value="<?=$row["id"]?>">
+                            <input type="hidden" name="u_id" value="<?=$row["user_id"]?>">
+                            <div class="submit card-text">
+                                <input type="submit" value="送信" class="btn btn-primary">
+                            </div>
+                        </form>
                     </div>
-                </form>
-
-                <div><?=$bbs_view?></div>
-            </section>
+                    <?php if($bbs_view){ ?>
+                    <div class="card-footer bkgd-white">
+                        <ul class="list-unstyled mb-0"><?=$bbs_view?></ul>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
         </div>
     </div>
-
-</div>
 </div><!-- event-text-box -->
 
 <!-- Main[End] -->

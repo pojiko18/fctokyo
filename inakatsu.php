@@ -54,7 +54,7 @@ if($status==false) {
 
 
 <?php
-$title = "イベント一覧";
+$title = "蝗活";
 include("include/header.php");
 ?>
 <!-- Head[End] -->
