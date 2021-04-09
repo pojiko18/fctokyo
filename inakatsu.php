@@ -32,7 +32,6 @@ if($status==false) {
     $view .= '<div class="card-body">';
     $view .= '<h3 class="card-title">'.$res["name"].'</h3>';
     $view .= '<p class="card-text"><i class="fas fa-calendar-alt"></i>投稿者： '.$res["user_name"].'</p>';
-    $view .= '<p>おすすめ度：'.$res["rating"].'</p>';
     $view .= '<p class="card-text"><button class="btn btn-primary btn-block">詳しく見る</button></p>';
     $view .= '</div>';
     $view .= '</a></div></div>';

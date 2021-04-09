@@ -27,7 +27,9 @@ if($status==false) {
 } else {
   //１データのみ抽出の場合はwhileループで取り出さない
   $row = $stmt->fetch();
+
 }
+
 
 //◆参加したイベントとイベント詳細をJOINさせて取得
 $sql_e = "SELECT * FROM event_list LEFT JOIN event ON event_list.event_id = event.e_id WHERE user_id=:u_id AND e_id=:e_id ";
@@ -46,6 +48,8 @@ if($status_e==false) {
 } else {
   $row_e = $stmt_e->fetch();
 }
+
+
 
 //◆参加したイベントとユーザー詳細をJOINさせて取得
 $sql_sanka = "SELECT * FROM event_list LEFT JOIN users ON event_list.user_id = users.user_id WHERE event_id=:e_id ";
@@ -187,7 +191,8 @@ function test2(position) {
 
         form.submit();
     } else {
-        $(".ng").addClass("d-block").removeClass("d-none").html("正しくチェックインできませんでした。場所を変えて再度お試しください。");
+        $(".ng").addClass("d-block").removeClass("d-none").html(
+            "正しくチェックインできませんでした。<br>GPSを起動してください。<br>または場所を変えて再度お試しください。");
     }
 }
 </script>
@@ -226,15 +231,15 @@ function test2(position) {
 
             <div class="col-lg-4">
                 <!-- ポイントゲット済み -->
-                <?php if($row_e['point'] > 0){ ?>     
-                    <div class="card border-danger">
-                        <div class="card-body">        
-                            <div class="d-flex justify-content-center align-self-center user-point">
-                                <img src="./img/fcpoint.svg" width="30" height="30" class="mr-2" alt="ポイント">
-                                <?php echo $row_e['point']; ?>ポイントゲットしました！
-                            </div>
+                <?php if( $row_e == true ){ ?>
+                <div class="card border-danger">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center align-self-center user-point">
+                            <img src="./img/fcpoint.svg" width="30" height="30" class="mr-2" alt="ポイント">
+                            <?php echo $row_e["point"]; ?>ポイントゲットしました！
                         </div>
                     </div>
+                </div>
                 <?php }else{ ?>
                 <div class="card border-danger">
                     <div class="card-header">
@@ -271,21 +276,21 @@ function test2(position) {
                         <script>
                         // Example starter JavaScript for disabling form submissions if there are invalid fields
                         (function() {
-                        'use strict';
-                        window.addEventListener('load', function() {
-                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                            var forms = document.getElementsByClassName('needs-validation');
-                            // Loop over them and prevent submission
-                            var validation = Array.prototype.filter.call(forms, function(form) {
-                            form.addEventListener('submit', function(event) {
-                                if (form.checkValidity() === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                                }
-                                form.classList.add('was-validated');
+                            'use strict';
+                            window.addEventListener('load', function() {
+                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                var forms = document.getElementsByClassName('needs-validation');
+                                // Loop over them and prevent submission
+                                var validation = Array.prototype.filter.call(forms, function(form) {
+                                    form.addEventListener('submit', function(event) {
+                                        if (form.checkValidity() === false) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+                                        form.classList.add('was-validated');
+                                    }, false);
+                                });
                             }, false);
-                            });
-                        }, false);
                         })();
                         </script>
                     </div>
@@ -316,7 +321,7 @@ function test2(position) {
                             <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
                             <input type="hidden" name="u_id" value="<?=$u_id?>">
                             <div class="submit card-text">
-                            <input type=" submit" value="送信" class="btn btn-primary">
+                                <input type=" submit" value="送信" class="btn btn-primary">
                             </div>
                         </form>
                     </div>

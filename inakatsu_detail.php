@@ -105,10 +105,8 @@ include("include/header.php");
                         <p>お店の情報（URL）:
                             <a href=" <?=$row["url"]?>" target="_blank" rel="noopener noreferrer"><?=$row["url"]?></a>
                         </p>
-                        <p>食べたメニュー名（商品名）：<?=$row["nemu"]?></p>
-                        <p>お値段：<?=$row["price"]?></p>
+
                         <p>感想：<?=$row["kansou"]?></p>
-                        <p>おすすめ度：<?=$row["rating"]?></p>
                     </div>
                 </div>
             </div>

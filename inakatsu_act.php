@@ -16,16 +16,10 @@ echo 'パラメータが不正です';
 }else{
     $lat = $_POST["lat"];
     $lon = $_POST["lon"];
-    // $file_name = $_FILES["upfile"]["name"];  //"1.jpg"ファイル名取得
-    // $extension = pathinfo($file_name, PATHINFO_EXTENSION); //拡張子取得
-    // $tmp_path  = $_FILES["upfile"]["tmp_name"]; //"/usr/www/tmp/1.jpg"アップロード先のTempフォルダ
-    // $uniq_name = date("YmdHis").session_id() . "." . $extension; //ユニークファイル名作成
-
-    $rating = $_POST["rating"];
+    
+    
     $name = $_POST["name"];
     $url = $_POST["url"];
-    $nemu = $_POST["nemu"];
-    $price = $_POST["price"];
     $kansou = $_POST["kansou"];
 
     //2. DB接続します(エラー処理追加)
@@ -36,8 +30,8 @@ echo 'パラメータが不正です';
 
 
     //３．データ登録SQL作成
-    $sql = "INSERT INTO inakatsu (user_id, name, img_shop,lat,lon, url, nemu,price,kansou,rating ,indate_ina )
-    VALUES(:u_id, :name, :img,:lat,:lon, :url, :nemu, :price,:kansou, :rating, sysdate())";
+    $sql = "INSERT INTO inakatsu (user_id, name, img_shop,lat,lon, url, kansou,indate_ina )
+    VALUES(:u_id, :name, :img,:lat,:lon, :url, :kansou,  sysdate())";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':lat', $lat);
     $stmt->bindValue(':lon', $lon);
@@ -45,10 +39,9 @@ echo 'パラメータが不正です';
     $stmt->bindValue(':u_id', $u_id, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
     $stmt->bindValue(':name', $name, PDO::PARAM_STR); 
     $stmt->bindValue(':url', $url, PDO::PARAM_STR);  
-    $stmt->bindValue(':nemu', $nemu, PDO::PARAM_STR);  
-    $stmt->bindValue(':price', $price, PDO::PARAM_STR);  
+    
     $stmt->bindValue(':kansou', $kansou, PDO::PARAM_STR);  
-    $stmt->bindValue(':rating', $rating, PDO::PARAM_STR);
+    
     $status = $stmt->execute();
     
     if($status==false){
