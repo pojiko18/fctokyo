@@ -94,7 +94,7 @@ header .navbar{
 /* ----- Hero Section Styling Starts ----- */
 
 .hero-section {
-	background:url(/img/header-bg.jpg);
+	background:url(../img/header-bg.jpg);
 	background-size: cover;
 	background-position: center;
 	padding: 100px 0 0 0;
