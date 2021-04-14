@@ -12,68 +12,59 @@ $u_id =$_SESSION["id"];
 }
 </style>
 
-<body>
-
-
-    <?php
-    $title = "蝗活　報告作成ページ";
-    $addhead ='<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">';
-    include("include/header.php");
+<?php
+$title = "蝗活　報告作成ページ";
+include("include/header.php");
 ?>
-
-    <!-- ここに現在地の緯度経度を取る -->
-    <!-- <div id="status"></div> -->
-
-    <form method="post" action="inakatsu_act.php" enctype="multipart/form-data" id="send_file">
-        <dl class="form-inner">
-            <dt class="form-title">画像選択</dt>
-            <dd class="form-item"><input type="file" id="myfile" accept="image/*" name="upfile">
-                <img id="img1" style="width:300px;height:300px;" />
-            <dt class="form-title">お店の名前</dt>
-            <dd class="form-item"><input type="text" name="name" class="rediTextForm"></dd>
-
-
-            <dt class="form-title">お店の住所</dt>
-            <dd class="form-item">
-                <input type="text" id="from" value="東京都" name="address">
+<div class="container">
+<div class="card my-5">
+    <div class="card-header">蝗活 作成</div>
+    
+    <div class="card-body">
+        <p class="card-text mb-4">紹介したいお店の情報を入力して登録してください。</p>
+        <form method="post" action="inakatsu_act.php" enctype="multipart/form-data" id="send_file">
+            <div class="form-group">
+                <label for="myfile">画像選択</label>
+                <input type="file" id="myfile" accept="image/*" name="upfile" class="form-control mb-2">
+                <img id="img1" style="width:300px;height:300px;" class="d-none" />
+            </div>
+            <div class="form-group">
+                <label for="name">お店の名前</label>
+                <input type="text" name="name" id="name" class="rediTextForm form-control">
+                </div>
+            <div class="form-group">
+                <label for="address">お店の住所</label>
+                
+                <input type="text" id="address" value="東京都" name="address" class="form-control">
                 <!-- <button id="get">地図で確認する</button> -->
-                <input type="text" name="lat" id="lat">
-                <input type="text" name="lon" id="lon">
-            </dd>
+                <input type="hidden" name="lat" id="lat">
+                <input type="hidden" name="lon" id="lon">
 
+                <small class="card-text text-muted my-2">GPSを起動させ、マップをクリックするとその場所の住所が出てきます。住所をコピーし入力欄にペーストすることができます。</small>
+                <div class="geocode"></div>
+                <div id="myMap" style="width:auto;height: 300px;"></div>
 
-
-
-            <p>GPSを起動させ、マップをクリックするとその場所の住所が出てきますので、コピペして使ってください！</p>
-            <div class="geocode"></div>
-            <div id="myMap" style="width:100%;height: 300px;"></div>
-
-
-
-
-            <dt class="form-title">お店の情報（URL）</dt>
-            <dd class="form-item"><input type="text" name="url" class="rediTextForm"></dd>
-            <a href="https://www.gnavi.co.jp/" target="_blank" rel="noopener noreferrer">＞ぐるなびでリンクを探す</a>
-
-            <dt class="form-title">感想</dt>
-            <dd class="form-item"><textArea name="kansou" rows="5" cols="55"></textArea></label></dd>
-
-
-            <input type="hidden" name="file_upload_flg" value="1">
-            <!-- <input type="file" accept="image/*" capture="camera" id="image_file" value="" name="upfile"
-                style="opacity:0;">
-            <input type="hidden" name="file_upload_flg" value="1"> -->
-        </dl>
-        <p class="btn-c">
-            <button id="get"><input type="submit" value="作成する" class="submit"></button>
-        </p>
-    </form>
+            </div>
+            <div class="form-group">
+                <label for="url">お店の情報（URL）</label>
+                <input type="text" id="url" name="url" class="rediTextForm form-control">
+                <a href="https://www.gnavi.co.jp/" target="_blank" rel="noopener noreferrer">＞ぐるなびでリンクを探す</a>
+                </div>
+            <div class="form-group">
+                <label for="kansou">感想</label>
+                <textArea name="kansou" id="kansou" rows="5" cols="55" class="form-control"></textArea>
+            </div>
+                <input type="hidden" name="file_upload_flg" value="1">
+                <!-- <input type="file" accept="image/*" capture="camera" id="image_file" value="" name="upfile"
+                    style="opacity:0;">
+                <input type="hidden" name="file_upload_flg" value="1"> -->
+            <p class="btn-c">
+                <input type="submit" value="作成する" class="btn btn-primary">
+            </p>
+        </form>
     </div>
-
-
-    <?php
-include("footer.php");
-?>
+</div>
+</div>
 
     <!-- Javascript -->
     <script
@@ -107,6 +98,7 @@ include("footer.php");
                 return function(e) {
                     $("#img1").attr("src", e.target.result);
                     $("#img1").attr("title", file.name);
+                    $("#img1").addClass("d-block").removeClass("d-none");
                 };
             })(file);
             reader.readAsDataURL(file);
@@ -186,7 +178,7 @@ include("footer.php");
     //     //     //searchManagerインスタンス化（Geocode,ReverseGeocodeが使用可能になる）
     //     //     searchManager = new Microsoft.Maps.Search.SearchManager(map);
     //     //     //Geocode：住所から検索
-    //     //     geocodeQuery(document.getElementById("from").value);
+    //     //     geocodeQuery(document.getElementById("address").value);
     //     // });
 
     // }
@@ -206,17 +198,25 @@ include("footer.php");
             //searchManagerインスタンス化（Geocode,ReverseGeocodeが使用可能になる）
             searchManager = new Microsoft.Maps.Search.SearchManager(map);
             //Geocode：住所から検索
-            geocodeQuery(document.getElementById("from").value);
+            geocodeQuery(document.getElementById("address").value);
         });
     }
 
     // /**
-    //  * 検索ボタン[Click:Event]
+    //  * 住所の入力が行われた時の処理
     //  */
-    document.getElementById("from").change = function() {
-        //4.Geocode:住所から検索
-        geocodeQuery(document.getElementById("from").value);
-    };
+    window.addEventListener('DOMContentLoaded', function(){
+        // input要素を取得
+        var input_name = document.getElementById("address");
+        
+        // 住所の入力変更が起きたら緯度経度取得
+        input_name.addEventListener("change",function(){
+                geocodeQuery(this.value);
+                console.log("Change action");
+                console.log(this.value);
+                console.log(document.getElementById("address").value);
+        });
+    });
 
     // /**
     //  * 住所から緯度経度を取得
@@ -259,4 +259,7 @@ include("footer.php");
     </script>
 
     <!-- マップ参考：https://mapapi.org/ -->
-</body>
+
+<?php
+include("include/footer.php");
+?>

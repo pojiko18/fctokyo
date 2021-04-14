@@ -11,7 +11,7 @@ $id =$_SESSION["id"];
 $pdo = dbcon();
 
 //◆蝗活データとユーザー情報をJOINさせて取得
-$stmt = $pdo->prepare("SELECT * FROM inakatsu LEFT JOIN users ON inakatsu.user_id = users.user_id ");
+$stmt = $pdo->prepare("SELECT * FROM inakatsu LEFT JOIN users ON inakatsu.user_id = users.user_id ORDER BY indate_ina DESC");
 $status = $stmt->execute();
 
 //３．データ表示

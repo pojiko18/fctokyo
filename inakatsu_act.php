@@ -14,6 +14,7 @@ if (!isset($_FILES['upfile']['error']) || !is_int($_FILES['upfile']['error'])
 echo 'パラメータが不正です';
 
 }else{
+    $address = $_POST["address"];
     $lat = $_POST["lat"];
     $lon = $_POST["lon"];
     
@@ -30,9 +31,10 @@ echo 'パラメータが不正です';
 
 
     //３．データ登録SQL作成
-    $sql = "INSERT INTO inakatsu (user_id, name, img_shop,lat,lon, url, kansou,indate_ina )
-    VALUES(:u_id, :name, :img,:lat,:lon, :url, :kansou,  sysdate())";
+    $sql = "INSERT INTO inakatsu (user_id, name, img_shop,address,lat,lon, url, kansou,indate_ina )
+    VALUES(:u_id, :name, :img,:address,:lat,:lon, :url, :kansou,  sysdate())";
     $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':address', $address);
     $stmt->bindValue(':lat', $lat);
     $stmt->bindValue(':lon', $lon);
     $stmt->bindValue(':img', $upfile, PDO::PARAM_STR); 
@@ -50,7 +52,7 @@ echo 'パラメータが不正です';
       exit("QueryError:".$error[2]);
     
     }else{
-    echo "登録完了！";
+    //echo "登録完了！";
     header("Location: inakatsu.php");
     }
 

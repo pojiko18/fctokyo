@@ -101,7 +101,8 @@ include("include/header.php");
                     <div class="card-body event-detail-overview">
                         <h2 class="card-title"><?=$row["name"]?></h2>
                         <p>投稿者：<a href="./user_page.php?id=<?=$row_e["user_id"]?>"><?=$row_e["user_name"]?>さん</a></p>
-                        <p>投稿日：<?=$row_e["indate_ina"]?></p>
+                        <p>投稿日：<?=$row["indate_ina"]?></p>
+                        <p>住所：<?=$row["address"]?></p>
                         <p>お店の情報（URL）:
                             <a href=" <?=$row["url"]?>" target="_blank" rel="noopener noreferrer"><?=$row["url"]?></a>
                         </p>
