@@ -50,11 +50,14 @@ include("include/header.php");
                     <?php if($row["img"]==NULL || $row["img"]== 1|| $row["img"]== 2){ ?>
                     <div><img src="./img/userimg.jpg" alt="" width="100" class="user-icon user-icon-lg mb-3"></div>
                     <?php }else{?>
-                    <div><img src="upload/<?=$row["img"]?>" width="100" class="user-icon user-icon-lg mb-3" name="upfile"></div>
+                    <div><img src="upload/<?=$row["img"]?>" width="100" class="user-icon user-icon-lg mb-3"
+                            name="upfile"></div>
                     <?php } ?>
 
-                    <input type="file" accept="image/*" capture="camera" name="upfile" class="form-control-file"
-                        id="form-user-icon">
+                    <input type="file" id="form-user-icon" accept="image/*" name="upfile" class="form-control mb-2">
+
+                    <!-- <input type="file" accept="image/*" capture="camera" name="upfile" class="form-control-file"
+                        id="form-user-icon"> -->
                 </div>
 
                 <div class="form-group">
@@ -164,30 +167,31 @@ include("include/header.php");
         </div>
     </div>
 </div>
-        <script>
-        //登録ボタンをクリック
-        $("#btn").on("click", function() {
-            //axiosでAjax送信
-            //Ajax（非同期通信）
-            const params = new URLSearchParams();
-            params.append('email', $("#email").val());
-            params.append('year', $("#year").val());
-            params.append('text', $("#text").val());
+<script>
+//登録ボタンをクリック
+$("#btn").on("click", function() {
+    //axiosでAjax送信
+    //Ajax（非同期通信）
+    const params = new URLSearchParams();
+    params.append('email', $("#email").val());
+    params.append('year', $("#year").val());
+    params.append('text', $("#text").val());
 
-            //axiosでAjax送信
-            axios.post('insert.php', params).then(function(response) {
-                //console.log(typeof response.data);//通信OK
-                if (response.data == true) {
-                    document.querySelector("#status").innerHTML = response.data;
-                }
-            }).catch(function(error) {
-                console.log(error); //通信Error
-            }).then(function() {
-                console.log("Last"); //通信OK/Error後に処理を必ずさせたい場合
-            });
-        });
+    //axiosでAjax送信
+    axios.post('insert.php', params).then(function(response) {
+        //console.log(typeof response.data);//通信OK
+        if (response.data == true) {
+            document.querySelector("#status").innerHTML = response.data;
+        }
+    }).catch(function(error) {
+        console.log(error); //通信Error
+    }).then(function() {
+        console.log("Last"); //通信OK/Error後に処理を必ずさせたい場合
+    });
+});
 
-        <
-        ? php
-        include("include/footer.php"); ?
-        >
+<
+?
+php
+include("include/footer.php"); ?
+>

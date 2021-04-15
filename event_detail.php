@@ -151,8 +151,8 @@ include("include/header_owner.php");
             </div>
 
             <div class="col-lg-4">
-              <!-- 人数と名前表示 -->
-              <div class="card">
+                <!-- 人数と名前表示 -->
+                <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">参加者数 <?=$sanka_count?></h3>
                         <div class="card-text">
@@ -163,26 +163,26 @@ include("include/header_owner.php");
             </div>
         </div>
 
-        
+
         <div class="row">
             <div class="col-lg-12">
                 <!-- 時間あればチャット入れる -->
                 <div class="card">
                     <div class="card-header" id="bbs">メッセージ</div>
-                    
+
                     <div class="card-body">
-                    <form method="post" action="bbs.php" class="form">
-                        <textarea name="bbs" rows="3" placeholder="メッセージを入力" class="form-control mb-3"></textarea>
-                        <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
-                        <input type="hidden" name="u_id" value="<?=$u_id?>">
-                        <div class="submit card-text"">
-                            <input type="submit" value="送信" class="btn btn-primary" >
-                        </div>
-                    </form>
+                        <form method="post" action="bbs.php" class="form">
+                            <textarea name="bbs" rows="3" placeholder="メッセージを入力" class="form-control mb-3"></textarea>
+                            <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
+                            <input type="hidden" name="u_id" value="<?=$o_id?>">
+                            <div class="submit card-text"">
+                            <input type=" submit" value="送信" class="btn btn-primary">
+                            </div>
+                        </form>
                     </div>
                     <?php if($bbs_view){ ?>
                     <div class="card-footer bkgd-white">
-                    <ul class="list-unstyled mb-0"><?=$bbs_view?></ul>
+                        <ul class="list-unstyled mb-0"><?=$bbs_view?></ul>
                     </div>
                     <?php } ?>
                 </div>

@@ -155,8 +155,8 @@ function test2(position) {
 
     console.log(lat);
     console.log(lon);
-    if (lat > <?=$row_team["lat"]?> - 0.002 && lat < <?=$row_team["lat"]?> + 0.002 && lon >
-        <?=$row_team["lon"]?> - 0.002 && lon < <?=$row_team["lon"]?> + 0.002) {
+    if (lat > <?=$row_team["lat"]?> - 0.01 && lat < <?=$row_team["lat"]?> + 0.01 && lon >
+        <?=$row_team["lon"]?> - 0.01 && lon < <?=$row_team["lon"]?> + 0.01) {
         var form = document.createElement('form');
         var request = document.createElement('input');
         var request2 = document.createElement('input');
@@ -260,7 +260,7 @@ function test2(position) {
                         <!-- 合言葉入れるところ -->
                         <form method="post" action="aikotoba_act.php" class="form needs-validation" novalidate>
                             <div class="form-group">
-                                <label for="aikotoba">ライブ参加の方は合言葉を入力してください。</label>
+                                <label for="aikotoba">リモートで参加の方は合言葉を入力してください。</label>
                                 <input type="text" id="aikotoba" name="aikotoba" class="form-control" required>
                                 <div class="invalid-feedback">
                                     合言葉を入力してください。
@@ -321,9 +321,11 @@ function test2(position) {
                             <input type="hidden" name="e_id" value="<?=$row["e_id"]?>">
                             <input type="hidden" name="u_id" value="<?=$u_id?>">
                             <div class="submit card-text">
-                                <input type=" submit" value="送信" class="btn btn-primary">
+                                <input type="submit" value="送信" class="btn btn-primary">
                             </div>
                         </form>
+
+
                     </div>
                     <?php if($bbs_view){ ?>
                     <div class="card-footer bkgd-white">

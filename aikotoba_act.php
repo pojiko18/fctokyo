@@ -48,8 +48,8 @@ if($status_u==false) {
 //３. 合言葉の認証
 
 if($aikotoba == ""){
-    echo "合言葉を入力してください。（5秒後にイベントページに戻ります）";
-    header( "refresh:5;url=y_event_detail.php?id=".$row["e_id"]);
+    echo "合言葉を入力してください。（3秒後にイベントページに戻ります）";
+    header( "refresh:3;url=y_event_detail.php?id=".$row["e_id"]);
 }else if($aikotoba == $row["password"]){
 
 
@@ -74,10 +74,10 @@ if($aikotoba == ""){
       $view .= '<div class="d-flex justify-content-center align-self-center mb-2 user-point">';
       $view .= '<img src="./img/fcpoint.svg"
       width="30" height="30" class="mr-2" alt="ポイント">'.$row["point"].'ポイントを獲得しました！';
-      $view .= '<br><small>（5秒後にイベントページに戻ります）</small></div>';
+      $view .= '<br><small>（3秒後にイベントページに戻ります）</small></div>';
       $view .= '</div>';
       echo $view;
-      header("refresh:5;url=y_event_detail.php?id=".$row["e_id"]);
+      header("refresh:3;url=y_event_detail.php?id=".$row["e_id"]);
       // header("Location: done.php");
     }
     

@@ -13,7 +13,7 @@ function dbcon(){
 
   try {
     //Password:MAMP='root',XAMPP=''
-    // $pdo = new PDO("mysql:dbname=pojico18_php02;charset=utf8;host=mysql2017.db.sakura.ne.jp","pojico18","pojiko18-php02");
+    // $pdo = new PDO("mysql:dbname=pojico18_fctokyo;charset=utf8;host=mysql2017.db.sakura.ne.jp","pojico18","pojiko18-php02");
     $pdo = new PDO('mysql:dbname=gs_fctokyo;charset=utf8;host=localhost','root','root'); // ココはコピペでＯＫ
     return $pdo;
 

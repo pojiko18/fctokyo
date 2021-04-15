@@ -78,17 +78,45 @@ p {
 </style>
 <!-- Main[Start] -->
 <div class="container mt-4">
-    <h1>蝗活　一覧</h1>
-    <p><a href="./inakatsu_create.php">作成はこちらから</a></p>
+    <h1>俺たちの蝗活マップ</h1>
+
+    <div class="inakatsu_top">
+        <div class="inakatsu_create">
+            <button onclick="location.href='./inakatsu_create.php'">蝗活の作成</button>
+        </div>
+        <a href="./inakatsu.php#about">＞蝗活とは？</a>
+    </div>
+
+
 
     <div class="map_area">
         <div class="myMap"></div>
     </div>
-    <div>赤いピンをクリックすると画像が見れます。<br>また画像をクリックすると詳細ページに移動します。</div>
+    <div class="setumei">※赤いピンをクリックすると画像が見れます。<br>また画像をクリックすると詳細ページに移動します。</div>
     <br>
     <div class="row"><?=$view?></div>
 </div>
+<div class="inakatsu_about">
+    <h2 id="about">蝗活とは？</h2>
+    <div>読み方を「いなかつ」と呼び、「蝗（いなご）活動」の略です。</div>
+    <br>
+    <div>それでは、蝗活って何か？</div>
+    <div>語源となるのは、昆虫の蝗（いなご）。</div>
+    <br>
+    <div>蝗が群を成して作物を喰いつくす様と、
+        ＦＣ東京サポーターたちがアウェイ先での地域名物を食べつくす様が同じだとして、ＦＣ東京サポーターを「蝗」と比喩されたのが始まり。</div>
+    <br>
+    <div>湘南のビールを飲み尽くし、仙台の牛タンを食べ尽くし、長崎の角煮マンを食べ尽くし、大分ではスーパーのとり天を完売させ、
+        千葉ではソーセージ盛りのお姉さんが腱鞘炎になりトングが持てないほどにさせてしまったり、鳥取では飲食だけで約880万を使い経済効果まで出している活動です(笑) （<a
+            href="https://www.travelvoice.jp/20171216-99076" target="_blank"
+            rel="noopener noreferrer">上記の経済効果のソースはこちら</a>）</div>
 
+    <br>
+    <div>いつ日か、アウェイ現地だけでなく、おいしいものを食べたときには、ツイッターで「#蝗活」のタグと一緒につぶやかれるようになりました。</div>
+    <br>
+    <div>ただ、そうしてみんなが各々つぶやくだけだった蝗活をまとめてみたいという想いから蝗活マップを作ってみました！</div>
+
+</div>
 <?php
 include("include/footer.php");
 ?>
@@ -96,7 +124,7 @@ include("include/footer.php");
 <script
     src="https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AlifJJNQU2HLjuz8pM4tLSBcX6htivoXsVYYMYxnUvQc1555Qk5MyGxfaCkEY14P"
     async defer></script>
-<script src="./js/js copy/BmapQuery.js"></script>
+<script src="./js/BmapQuery.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

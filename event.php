@@ -23,9 +23,9 @@ include("include/header_owner.php");
                     <!-- 画像を入れる -->
                     <input id="form-event-image" type="file" accept="image/*" capture="camera" name="upfile"
                         class="form-control-file" aria-describedby="imageHelpBlock">
-                        <small id="imageHelpBlock" class="form-text text-muted">
-                    ※800px x 480px の画像を使用すると綺麗に表示されます。<br>
-                    ※この画面ではプレビューは表示されません</small>
+                    <small id="imageHelpBlock" class="form-text text-muted">
+                        ※800px x 480px の画像を使用すると綺麗に表示されます。<br>
+                        ※この画面ではプレビューは表示されません</small>
                 </div>
                 <div class="form-group">
                     <label for="form-event-day">開催日</label><br>
@@ -104,8 +104,13 @@ include("include/header_owner.php");
                     <input id="form-event-place" type="text" name="place" class="rediTextForm form-control">
                 </div>
                 <div class="form-group">
+                    <label for="form-event-place" class="form-title">チームID</label>
+                    <input id="form-event-place" type="text" name="team_id" class="rediTextForm form-control">
+                </div>
+                <div class="form-group">
                     <label for="form-event-contents">内容</label>
-                    <textArea id="form-event-contents" name="contents" rows="5" cols="55" class="form-control"></textArea></label>
+                    <textArea id="form-event-contents" name="contents" rows="5" cols="55"
+                        class="form-control"></textArea></label>
                 </div>
                 <div class="form-group">
                     <label for="form-event-password">合言葉</label>
@@ -113,13 +118,14 @@ include("include/header_owner.php");
                 </div>
                 <div class="form-group">
                     <label for="form-event-point">ポイント数</label>
-                    <input id="form-event-point" aria-describedby="pointHelpBlock" type="text" name="point" class="rediTextForm form-control">
+                    <input id="form-event-point" aria-describedby="pointHelpBlock" type="text" name="point"
+                        class="rediTextForm form-control">
                     <small id="pointHelpBlock" class="form-text text-muted">
-                    <strong>ポイント数目安</strong><br>
-                    試合スタジアム観戦：100p<br>
-                    試合オンライン観戦：50p<br>
-                    有料イベント：50p<br>
-                    無料イベント：10p<br>
+                        <strong>ポイント数目安</strong><br>
+                        試合スタジアム観戦：100p<br>
+                        試合オンライン観戦：50p<br>
+                        有料イベント：50p<br>
+                        無料イベント：10p<br>
                     </small>
                 </div>
                 <p class="btn-c">

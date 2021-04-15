@@ -10,6 +10,7 @@ $month = $_POST["month"];
 $day = $_POST["day"];
 $time = $_POST["time"];
 $place = $_POST["place"];
+$team_id = $_POST["team_id"];
 $contents = $_POST["contents"];
 $password = $_POST["password"];
 $point = $_POST["point"];
@@ -31,8 +32,8 @@ $pdo = dbcon();
 $upfile = fileUpload("upfile","upload/");
 
 //３．データ登録SQL作成
-$stmt = $pdo->prepare("INSERT INTO event(o_id,title,img,year,month,day,time,place,contents,password,point)
-VALUES(:o_id,:title,:img,:year,:month,:day,:time,:place,:contents,:password,:point)");
+$stmt = $pdo->prepare("INSERT INTO event(o_id,title,img,year,month,day,time,place,team_id,contents,password,point)
+VALUES(:o_id,:title,:img,:year,:month,:day,:time,:place,:team_id,:contents,:password,:point)");
 // $stmt = $pdo->prepare("INSERT INTO gs_wb_table(want_name,want_url,want_com,rating2,indate)VALUES(:want_name,:want_url,:want_com,:rating2,sysdate())");
 
 //バインド変数を作ってセキュリティーを強化させる
@@ -44,7 +45,8 @@ $stmt->bindValue(':year', $year, PDO::PARAM_INT);
 $stmt->bindValue(':month', $month, PDO::PARAM_INT); 
 $stmt->bindValue(':day', $day, PDO::PARAM_INT);  
 $stmt->bindValue(':time', $time, PDO::PARAM_STR);  
-$stmt->bindValue(':place', $place, PDO::PARAM_STR);   
+$stmt->bindValue(':place', $place, PDO::PARAM_STR); 
+$stmt->bindValue(':team_id', $team_id, PDO::PARAM_INT);  
 $stmt->bindValue(':contents', $contents, PDO::PARAM_STR); 
 $stmt->bindValue(':password', $password, PDO::PARAM_STR); 
 $stmt->bindValue(':point', $point, PDO::PARAM_INT);
